@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible"
+    content="ie=edge">
+  <title>Document</title>
+  <base href="./"
+    target="_blank">
+  <style>
+    * {
+      font-family: 'Courier New', Courier, monospace;
+      color: white;
+      font-size: 120%;
+    }
+
+    html,
+    body {
+      margin: 0px;
+      height: 100%;
+    }
+
+    .container {
+      background: #333;
+      height: 100%;
+      flex-flow: column nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    ul {
+      list-style-type: decimal;
+    }
+
+    ul li {
+      transition: transform .3s; 
+    }
+
+    ul li:hover {
+      transform: translateX(10px)
+    }
+
+    ul li::after {
+      content: '\00a0';
+    }
+
+    ul li:hover::after {
+      content: '<';
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h3 class="tit">The basics of client development</h3>
+    <ul>
+      <li>
+        <a href="http://r.kpi.ua/history">Lab1 + lab3</a>
+      </li>
+      <li>
+        <a href="./lab2.html">Lab2</a>
+      </li>
+      <li>
+        <a href="./lab4.html">Lab4</a>
+      </li>
+    </ul>
+    <div style="font-size: 80%; align-self: flex-end; padding-right: 200px;">Амброс Всеволод</div>
+  </div>
+</body>
+
+</html>
