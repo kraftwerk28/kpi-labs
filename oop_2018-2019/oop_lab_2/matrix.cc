@@ -4,8 +4,12 @@
 
 #include "matrix.h"
 
+using std::pair;
+
 matrix::matrix()
-    : w(0), h(0), body(nullptr) {}
+    : w(0), h(0), body(nullptr)
+{
+}
 
 matrix::matrix(std::initializer_list<std::initializer_list<double>> arg)
     : h((uint) arg.size()), w((uint) arg.begin()->size())
@@ -27,7 +31,11 @@ matrix::matrix(uint _rows, uint _columns)
 {
     body = new double *[h];
     for (uint r = 0; r < h; r++)
+    {
         body[r] = new double[w];
+        for (uint i = 0; i < w; i++)
+            body[r][i] = 0;
+    }
 }
 
 matrix::matrix(const matrix &cp)
@@ -67,7 +75,7 @@ void matrix::print() const
     cout << endl;
 }
 
-matrix matrix::operator+(const matrix &m)
+matrix matrix::operator+(const matrix &m) const
 {
     if (w != m.w || h != m.h)
         throw "Error in sum of matrices. Matrix dimencions should be equal. Aborting...\n";
@@ -78,7 +86,7 @@ matrix matrix::operator+(const matrix &m)
     return result;
 }
 
-matrix matrix::operator-(const matrix &m)
+matrix matrix::operator-(const matrix &m) const
 {
     if (w != m.w || h != m.h)
         throw "Error in matrix substraction. Matrix dimencions should be equal. Aborting...\n";
@@ -89,7 +97,7 @@ matrix matrix::operator-(const matrix &m)
     return result;
 }
 
-matrix matrix::operator*(const matrix &m)
+matrix matrix::operator*(const matrix &m) const
 {
     if (w != m.h)
         throw "Error in matrix multiplication. Aborting...\n";
@@ -107,7 +115,7 @@ matrix matrix::operator*(const matrix &m)
     return result;
 }
 
-matrix matrix::operator*(double num)
+matrix matrix::operator*(double num) const
 {
     const auto res = matrix(*this);
     for (uint r = 0; r < h; r++)
@@ -120,7 +128,7 @@ matrix matrix::operator*(double num)
     return res;
 }
 
-matrix matrix::operator/(const matrix &m)
+matrix matrix::operator/(const matrix &m) const
 {
     return *this * !m;
 }
@@ -148,8 +156,10 @@ matrix matrix::operator!() const
 
 double matrix::operator~() const
 {
+    return gaussian_det();
+    /*
     if (w != h)
-        throw "Inverse matrix can not be calculated. Aborting...";
+        throw "Determinant can not be calculated. Aborting...";
     if (w <= 1)
         return body[0][0];
     else if (w == 2)
@@ -163,6 +173,7 @@ double matrix::operator~() const
         }
         return result;
     }
+    */
 }
 
 void matrix::push(const double val)
@@ -225,3 +236,106 @@ std::ostream &operator<<(std::ostream &s, const matrix &m)
     return s;
 }
 
+std::istream &operator>>(std::istream &s, matrix &m)
+{
+    double val;
+    s >> val;
+    m.push(val);
+    return s;
+}
+
+matrix matrix::LU() const
+{
+    matrix l = matrix(h, w), u = matrix(h, w);
+
+    uint d = h;
+
+    if (body[0][0] == 0) return u;
+
+    for (uint j = 0; j < d; j++)
+    {
+        u[0][j] = body[0][j];
+        l[j][0] = body[j][0] / u[0][0];
+    }
+
+    for (uint i = 1; i < d; i++)
+    {
+        for (uint j = i; j < d; j++)
+        {
+            double sum1 = 0, sum2 = 0;
+            for (uint k = 0; k < d - 1; k++)
+            {
+                sum1 += l[i][k] * u[k][j];
+                sum2 += l[j][k] * u[k][i];
+            }
+
+            u[i][j] = body[i][j] - sum1;
+            l[j][i] = (body[j][i] - sum2) / u[i][i];
+        }
+    }
+
+    return u;
+}
+
+double matrix::gaussian_det() const
+{
+    const auto lu = LU();
+
+    double res = 1;
+    for (uint i = 0; i < h; i++)
+    {
+        res *= lu[i][i];
+    }
+
+    return res;
+}
+
+uint matrix::size() const
+{
+    return w * h;
+}
+
+/*
+double matrix::thread_det() const
+{
+    using std::thread;
+    using std::vector;
+
+    double result = 0;
+    bool *thread_flags[w] = {new bool(false)};
+    thread *threads[w] = {nullptr};
+
+    for (uint i = 0; i < w; i++)
+    {
+        const auto l = [this, i, &thread_flags, &result]() -> void {
+            result += ~sub_mat(0, i);
+            *thread_flags[i] = true;
+        };
+        threads[i] = new thread(l);
+    }
+
+    while (true)
+    {
+        uint cnt = 0;
+        for (uint i = 0; i < w; i++)
+        {
+            if (*thread_flags[i])
+            {
+                cnt++;
+            } else
+                break;
+        }
+        if (cnt >= w - 1)
+            break;
+    }
+
+    for (uint i = 0; i < w; i++)
+    {
+        threads[i]->join();
+        delete thread_flags[i];
+        delete threads[i];
+    }
+
+    return result;
+}
+*/

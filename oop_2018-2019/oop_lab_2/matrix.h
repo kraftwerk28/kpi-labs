@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 #include <typeinfo>
+#include <thread>
 
 #define list std::initializer_list
 
@@ -27,15 +28,16 @@ public:
 
     ~matrix();
 
-    matrix operator+(const matrix &m);
 
-    matrix operator-(const matrix &m);
+    matrix operator+(const matrix &m) const;
 
-    matrix operator*(const matrix &m);
+    matrix operator-(const matrix &m) const;
 
-    matrix operator*(double num);
+    matrix operator*(const matrix &m) const;
 
-    matrix operator/(const matrix &m);
+    matrix operator*(double num) const;
+
+    matrix operator/(const matrix &m) const;
 
     double *operator[](int i) const;
 
@@ -47,20 +49,28 @@ public:
 
     friend std::ostream &operator<<(std::ostream &s, const matrix &m);
 
+    friend std::istream &operator>>(std::istream &s, matrix &m);
+
     matrix transp() const;
 
     void print() const;
 
     void push(double val);
 
+    uint size() const;
+
 private:
     double **body;
+
+    matrix LU() const;
 
     uint push_pos_r = 0, push_pos_c = 0;
 
     uint w = 0, h = 0;
 
     matrix sub_mat(uint _r, uint _c) const;
+
+    double gaussian_det() const;
 };
 
 

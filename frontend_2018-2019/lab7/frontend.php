@@ -1,11 +1,10 @@
+<!-- CLIENT SIDE -->
+<!DOCTYPE html>
 <html>
 
 <head>
   <meta http-equiv="content-type"
     content="text/html;charset=utf-8" />
-  <link rel="stylesheet"
-    href="css/main.css"
-    type="text/css" />
   <title>Зразок оформлення веб-сторінки</title>
   <style>
     body {
@@ -154,8 +153,24 @@
 </head>
 
 <body>
+  <?php
+    $db1 = new mysqli('localhost', 'kraftwerk28', '271828', 'kpi_frontend');
+    $info1 = $db1->query("SELECT * FROM lab7")->fetch_assoc();
+    $sections_cnt = $db1->query("SELECT sections_cnt FROM lab7")->fetch_assoc();
+    $articles = $db1->query("SELECT * FROM lab7_articles");
+    
+    // while($sections_cnt > 0) {
+    //   echo $articles->fetch_assoc()[];
+    // }
+    
+    
+    
+    
+    $db1->close();
+  ?>
+
   <div id="content">
-    <h1>Зразок оформлення веб-сторінки</h1>
+    <h1><?php echo $info1['title']?></h1>
     <ul id="menu">
       <li><a href="#">головна</a></li>
       <li><a href="#">архів</a></li>
