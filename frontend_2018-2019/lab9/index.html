@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible"
+    content="ie=edge">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <style>
+    table {
+      width: 75%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    body {
+      background: #333;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+    }
+
+    * {
+      color: white;
+    }
+
+    td {
+      border: 1px solid white;
+      height: 30px;
+      transition: all .2s;
+      overflow: hidden;
+    }
+
+    td:hover {
+      background: #ddd;
+    }
+
+    p {
+      margin-top: 20px;
+    }
+
+  </style>
+
+  <script src="./script.js"></script>
+  
+</head>
+
+<body>
+  <p>Таблиця 1</p>
+  <table>
+    <tr>
+      <td colspan="7"></td>
+    </tr>
+    <tr>
+      <td colspan="6"></td>
+      <td rowspan="6"></td>
+    </tr>
+    <tr>
+      <td colspan="5"></td>
+      <td rowspan="5"></td>
+    </tr>
+    <tr>
+      <td colspan="4"></td>
+      <td rowspan="4"></td>
+    </tr>
+    <tr>
+      <td colspan="3"></td>
+      <td rowspan="3"></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td rowspan="2"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+
+  <p>Таблиця 2</p>
+  <table>
+    <tr>
+      <td colspan="6"></td>
+      <td rowspan="7"></td>
+    </tr>
+    <tr>
+      <td colspan="5"></td>
+      <td rowspan="6"></td>
+    </tr>
+    <tr>
+      <td colspan="4"></td>
+      <td rowspan="5"></td>
+    </tr>
+    <tr>
+      <td colspan="3"></td>
+      <td rowspan="4"></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td rowspan="3"></td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td rowspan="2"></td>
+    </tr>
+    <tr>
+      <td></td>
+    </tr>
+  </table>
+
+  <p>Таблиця 3</p>
+  <table style="height: 200px;">
+    <tr>
+      <td></td>
+      <td rowspan="2"></td>
+      <td></td>
+      <td rowspan="2"></td>
+      <td></td>
+      <td rowspan="2"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td rowspan="2"></td>
+      <td rowspan="2"></td>
+      <td rowspan="2"></td>
+      <td rowspan="2"></td>
+    </tr>
+    <tr>
+      <td rowspan="2"></td>
+      <td rowspan="2"></td>
+      <td rowspan="2"></td>
+    </tr>
+    <tr>
+      <td rowspan="2"></td>
+      <td rowspan="2"></td>
+      <td rowspan="2"></td>
+      <td rowspan="2"></td>
+    </tr>
+    <tr>
+      <td rowspan="2"></td>
+      <td rowspan="2"></td>
+      <td rowspan="2"></td>
+    </tr>
+    <tr>
+      <td rowspan="2"></td>
+      <td rowspan="2"></td>
+      <td rowspan="2"></td>
+      <td rowspan="2"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+
+  <p>Таблиця 4</p>
+  <table>
+    <tr>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td colspan="3"></td>
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td colspan="3"></td>
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <td colspan="3"></td>
+      <td colspan="3"></td>
+      <td></td>
+    </tr>
+  </table>
+</body>
+
+</html>
