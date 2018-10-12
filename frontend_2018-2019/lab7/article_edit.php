@@ -22,6 +22,35 @@
       padding: 5px;
       border-bottom: 1px solid black;
     }
+
+    .articles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 10px;
+    }
+
+    .articles > div {
+      border: 1px solid white;
+      padding: 5px;
+    }
+
+    .articles > div > p {
+      margin-top: 5px;
+    }
+
+
+    body {
+      background: #333;
+    }
+
+    * {
+      color: white;
+      font-family: monospace;
+    }
+
+    button, input, textarea {
+      color: black;
+    }
   </style>
   
   <title>Document</title>
@@ -42,6 +71,7 @@
       copyright='$copyright_text',
       link_sign='$link_text',
       main_annot_index=$main_art_index");
+
   
     // $db1->close();
     // $db2 = new mysqli('localhost', 'kraftwerk28', '271828', 'kpi_frontend');
@@ -56,11 +86,13 @@
 
   <form method="post"
     class="form-container"
-    action="frontend.php">
+    action="confirm.php">
     <?php
+      echo "<div class='articles'>";
       for ($i = 0; $i < $sections_cnt; $i++) {
         echo "
           <div>
+            <h4>Стаття №".($i + 1)."</h4>
             <p>Заголовок статті:</p>
             <input type='text'
               name='title$i'
@@ -71,11 +103,23 @@
               value=''></textarea>
             <p>Час:</p>
             <input type='datetime-local'
-              name='text$i'
+              name='date$i'
               value=''>
           </div>
         ";
       }
+      echo "</div>";
+      echo "<div class='links'>";
+      for ($i = 0; $i < $punct_num; $i++) {
+        $num = $i + 1;
+        echo "
+          <input type='text'
+            name='menu$i'
+            value=''
+            placeholder='Текст лінка №$num'>";
+      }
+      echo "</div>";
+      
     ?>
     
     <button type="submit">Готово</button>

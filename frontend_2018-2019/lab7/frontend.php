@@ -7,8 +7,10 @@
     content="text/html;charset=utf-8" />
   <title>Зразок оформлення веб-сторінки</title>
   <style>
+
     body {
       margin: 0px;
+      height: 100%;
     }
 
     body * {
@@ -43,6 +45,8 @@
 
     #content>#menu>li {
       display: inline;
+      margin-left: 5px;
+      margin-right: 5px;
     }
 
     .post {
@@ -155,74 +159,68 @@
 <body>
   <?php
     $db1 = new mysqli('localhost', 'kraftwerk28', '271828', 'kpi_frontend');
-    $info1 = $db1->query("SELECT * FROM lab7")->fetch_assoc();
-    $sections_cnt = $db1->query("SELECT sections_cnt FROM lab7")->fetch_assoc();
+
+    // lab7 table
+    $info = $db1->query("SELECT * FROM lab7")->fetch_assoc();
     $articles = $db1->query("SELECT * FROM lab7_articles");
-    
-    // while($sections_cnt > 0) {
-    //   echo $articles->fetch_assoc()[];
-    // }
-    
-    
-    
+    $menu = $db1->query("SELECT * FROM lab7_puncts")->fetch_all();
     
     $db1->close();
   ?>
 
   <div id="content">
-    <h1><?php echo $info1['title']?></h1>
+    <h1><?php echo $info['title']?></h1>
     <ul id="menu">
-      <li><a href="#">головна</a></li>
-      <li><a href="#">архів</a></li>
-      <li><a href="#">контакти</a></li>
+      <?php 
+        for ($i = 0; $i < $info['punct_num']; $i++) {
+          $text = $menu[$i][0];
+          echo "<li><a href='#'>$text</a></li>";
+        }
+      ?>
     </ul>
     <div class="post">
       <div class="details">
-        <h2><a href="#">Тут щось незрозуміле</a></h2>
+        <?php
+          $ind = $info['main_annot_index'];
+          $res = NULL;
+          while($ind-- >= 0) {
+            $res = $articles->fetch_array($resulttype=MYSQLI_ASSOC);
+          }
+          $articles->data_seek(0);
+
+          $title = $res['title'];
+          $text = $res['text'];
+
+          echo "<h2><a href='#'>$text</a></h2>";
+        ?>
+        <!-- <h2><a href="#">Тут щось незрозуміле</a></h2> -->
         <p class="info">опубліковано 5хв. тому у секції <a href="#">загальне</a></p>
       </div>
       <div class="body">
-        <p>Тут щось незрозуміле написано, треба розбиратись. Отаке тут щось незрозуміле написано, а часу розбиратись
-          немає.
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna
-          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat.
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+        <p><?php echo "$text"?></p>
       </div>
       <div class="x"></div>
     </div>
-    <div class="col">
-      <h3><a href="#">І тут не ясно</a></h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna
-        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat.
-      </p>
-      <p class="det">&not; <a href="#">детальніше</a></p>
-    </div>
-    <div class="col">
-      <h3><a href="#">А тут взагалі абзац</a></h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna
-        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat.
-      </p>
-      <p class="det">&not; <a href="#">детальніше</a></p>
-    </div>
-    <div class="col last">
-      <h3><a href="#">Може я піду?</a></h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna
-        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat.
-      </p>
-      <p class="det">&not; <a href="#">детальніше</a></p>
-    </div>
+    <?php
+      $pass = $info['main_annot_index'];
+      for ($i = 0; $i < $info['sections_cnt']; $i++) {
+        if ($i == $pass) continue;
+        $data = $articles->fetch_assoc();
+        $title = $data['title'];
+        $text = $data['text'];
+        echo "
+          <div class='col'>
+            <h3><a href='#'>$title</a></h3>
+            <p>$text</p>
+            
+          </div>
+        ";
+      }
+    
+    
+    ?>
     <div id="footer">
-      <p>Copyright &copy; 2018 <em>Koвтyнeць O.B. &laquo;Beб-тexнoлoгiї&raquo;</em>
-        &middot; Design: ІП-6х, <a href="http://asu.kpi.ua/"
-          title="ACOI KПI">ACОIУ KПI</a></p>
+      <p><?php echo $info['copyright']?></p>
     </div>
   </div>
 </body>
