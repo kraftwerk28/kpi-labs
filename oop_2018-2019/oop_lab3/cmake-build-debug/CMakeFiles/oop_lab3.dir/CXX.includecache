@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/kraftwerk28/d/kpi/oop_2018-2019/oop_lab3/shape.cc
+shape.h
+/home/kraftwerk28/d/kpi/oop_2018-2019/oop_lab3/shape.h
+
+/home/kraftwerk28/d/kpi/oop_2018-2019/oop_lab3/shape.h
+initializer_list
+-
+cmath
+-
+stdexcept
+-
+

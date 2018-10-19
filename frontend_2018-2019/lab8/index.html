@@ -7,38 +7,214 @@
     content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible"
     content="ie=edge">
+
+  <style>
+    body {
+      background: #333;
+    }
+    
+    * {
+      font-family: monospace;
+      color: white;
+    }
+
+    input, button, textarea {
+      color: black;
+    }
+    
+    #root {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .container {
+      width: 75%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .container > div {
+      border: 1px solid white;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 5px;
+    }
+
+    .container > div > p:nth-of-type(1) {
+      margin-top: 0px;
+      text-align: center;
+      font-weight: bold;
+      border-bottom: 1px solid white;
+    }
+
+    #task5 > img {
+      width: 100%;
+    }
+
+    #scaler {
+      position: fixed;
+      width: 200px;
+      height: 200px;
+      background: black url('t5.jpg');
+      pointer-events: none;
+      background-repeat: no-repeat;
+      display: none;
+      box-shadow: 0px 0px 20px #333;
+      /* background-size: 1000px; */
+    }
+  
+  </style>
+
   <title>Document</title>
 </head>
 
 <body>
-  <div class="container">
-    <form>
-      <div>
-        <input type="text"
-          id="x1"
-          placeholder="x1">
-        <input type="text"
-          id="y1"
-          placeholder="y1">
+  <div id="root">
+    <div class="container">
+
+      <div id="task1">
+        <p>#1</p>
+        <div>
+          <input type="text"
+            id="x1"
+            placeholder="x1">
+          <input type="text"
+            id="y1"
+            placeholder="y1">
+        </div>
+        <div>
+          <input type="text"
+            id="x2"
+            placeholder="x2">
+          <input type="text"
+            id="y2"
+            placeholder="y2">
+        </div>
+        <div>
+          <input type="text"
+            id="x3"
+            placeholder="x3">
+          <input type="text"
+            id="y3"
+            placeholder="y3">
+        </div>
+        <h3 id="result1"></h3>
+
       </div>
-      <div>
+
+      <div id="task2">
+        <p>#2</p>
         <input type="text"
-          id="x2"
-          placeholder="x2">
+          id="t2text1">
         <input type="text"
-          id="y2"
-          placeholder="y2">
+          id="t2text2">
       </div>
-      <div>
+
+      <div id="task3">
+        <p>#3</p>
         <input type="text"
-          id="x3"
-          placeholder="x3">
-        <input type="text"
-          id="y3"
-          placeholder="y3">
+          id="t3">
+        <button id="t3submit">Submit</button>
+        <h3 id="t3res"></h3>
       </div>
-      <h3 id="result1">ke</h3>
-    </form>
+
+      <div id="task4">
+        <p>#4</p>
+        <input type="text"
+          placeholder="сторона1"
+          id="t4s1">
+        <input type="text"
+          placeholder="сторона1"
+          id="t4s2">
+        <input type="text"
+          placeholder="сторона1"
+          id="t4s3">
+        <button id="t4check">Перевірити</button>
+        <p id="t4res">></p>
+      </div>
+
+      <div id="task5">
+        <p>#5</p>
+        <img id="t5img"
+          src="t5.jpg"
+          alt="kek">
+
+        <div id="scaler"></div>
+
+      </div>
+
+      <div id="task6">
+        <p>#6</p>
+        <label><input type="radio"
+            id="t6left"
+            name="t6">left</label>
+        <label><input type="radio"
+            id="t6center"
+            name="t6">center</label>
+        <label><input type="radio"
+            id="t6right"
+            name="t6">right</label>
+        <label>size<input type="number"
+            id="t6size"
+            min="1"
+            max="10"
+            value="2"></label>
+        <hr id="t6"
+          size="2">
+      </div>
+
+      <div id="task7">
+        <p>#7</p>
+      </div>
+
+      <div id="task8">
+        <p>#8</p>
+
+        <input type="color"
+          name=""
+          id="cl">
+
+      </div>
+
+      <div id="task9">
+        <p>#9</p>
+        <input type="file"
+          name=""
+          id="">
+      </div>
+
+      <div id="task10">
+        <p>#10</p>
+        <input type="text"
+          id="t10">
+        <button id="t10submit">Reverce</button>
+      </div>
+
+      <div id="task14">
+        <p>#14</p>
+        <textarea name=""
+          id="t14"
+          cols="30"
+          rows="10"></textarea>
+        <h3 id="t14res">0</h3>
+
+      </div>
+
+      <div id="task16">
+        <p>#16</p>
+        <form>
+          <input type="email"
+            name=""
+            id="t10email">
+          <button type="submit">submit</button>
+        </form>
+
+
+      </div>
+
+
+    </div>
 
   </div>
 
