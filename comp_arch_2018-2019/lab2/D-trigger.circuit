@@ -1,0 +1,30 @@
+<!DOCTYPE KTechlab>
+<document type="circuit">
+ <item x="140" y="204" z="0" type="ec/d_flipflop" id="d_flipflop" flip="0" angle="0">
+  <data type="string" value="Rising" id="trig"/>
+ </item>
+ <item x="44" y="180" z="3" type="ec/logic_input" id="logic_input" flip="0" angle="0">
+  <data type="bool" value="1" id="useToggle"/>
+  <button id="button" state="0"/>
+ </item>
+ <item x="44" y="228" z="4" type="ec/logic_input" id="logic_input__28" flip="0" angle="0">
+  <data type="bool" value="1" id="useToggle"/>
+  <button id="button" state="0"/>
+ </item>
+ <item x="52" y="268" z="5" type="ec/logic_input" id="logic_input__34" flip="0" angle="0">
+  <data type="bool" value="0" id="useToggle"/>
+  <button id="button" state="0"/>
+ </item>
+ <item x="68" y="116" z="6" type="ec/logic_input" id="logic_input__40" flip="0" angle="0">
+  <data type="bool" value="0" id="useToggle"/>
+  <button id="button" state="0"/>
+ </item>
+ <item x="260" y="164" z="1" type="ec/logic_output" id="logic_output" flip="0" angle="0"/>
+ <item x="260" y="244" z="2" type="ec/logic_output" id="logic_output__20" flip="0" angle="0"/>
+ <connector route="30,30,29,30,29,29,29,28,29,27,29,26,28,26,27,26,26,26,25,26,24,26,23,26,22,26," end-node-parent="d_flipflop" manual-route="0" end-node-is-child="1" start-node-is-child="1" end-node-cid="p2" start-node-parent="logic_output__20" id="connector" start-node-cid="n1"/>
+ <connector route="30,20,29,20,29,21,29,22,29,23,29,24,28,24,27,24,26,24,25,24,24,24,23,24,22,24," end-node-parent="d_flipflop" manual-route="0" end-node-is-child="1" start-node-is-child="1" end-node-cid="p1" start-node-parent="logic_output" id="connector__22" start-node-cid="n1"/>
+ <connector route="10,14,11,14,12,14,13,14,14,14,15,14,16,14,17,14,17,15,17,16,17,17,17,18,17,19,17,20,17,21," end-node-parent="d_flipflop" manual-route="1" end-node-is-child="1" start-node-is-child="1" end-node-cid="set" start-node-parent="logic_input__40" id="connector__42" start-node-cid="p1"/>
+ <connector route="7,22,8,22,8,23,8,24,9,24,10,24,11,24,12,24," end-node-parent="d_flipflop" manual-route="1" end-node-is-child="1" start-node-is-child="1" end-node-cid="n1" start-node-parent="logic_input" id="connector__43" start-node-cid="p1"/>
+ <connector route="7,28,8,28,8,27,8,26,9,26,10,26,11,26,12,26," end-node-parent="d_flipflop" manual-route="0" end-node-is-child="1" start-node-is-child="1" end-node-cid="n2" start-node-parent="logic_input__28" id="connector__44" start-node-cid="p1"/>
+ <connector route="8,33,9,33,10,33,11,33,12,33,13,33,14,33,15,33,16,33,17,33,17,32,17,31,17,30,17,29," end-node-parent="d_flipflop" manual-route="0" end-node-is-child="1" start-node-is-child="1" end-node-cid="rst" start-node-parent="logic_input__34" id="connector__45" start-node-cid="p1"/>
+</document>

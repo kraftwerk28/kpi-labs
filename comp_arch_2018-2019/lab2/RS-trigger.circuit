@@ -1,27 +1,27 @@
 <!DOCTYPE KTechlab>
 <document type="circuit">
- <item x="44" y="116" z="4" type="ec/battery" id="cell" flip="0" angle="270">
+ <item x="44" y="116" z="3" type="ec/battery" id="cell" flip="0" angle="270">
   <data type="number" value="5" id="voltage"/>
  </item>
- <item x="60" y="340" z="5" type="ec/ground" id="ground" flip="0" angle="270"/>
- <item x="452" y="132" z="1" type="ec/logic_output" id="logic_output" flip="0" angle="0"/>
- <item x="460" y="252" z="2" type="ec/logic_output" id="logic_output__18" flip="0" angle="0"/>
- <item x="284" y="132" z="8" type="ec/nor" id="nor" flip="0" angle="0">
+ <item x="60" y="340" z="4" type="ec/ground" id="ground" flip="0" angle="270"/>
+ <item x="452" y="132" z="0" type="ec/logic_output" id="logic_output" flip="0" angle="0"/>
+ <item x="460" y="252" z="1" type="ec/logic_output" id="logic_output__18" flip="0" angle="0"/>
+ <item x="284" y="132" z="7" type="ec/nor" id="nor" flip="0" angle="0">
   <data type="number" value="2" id="numInput"/>
  </item>
- <item x="284" y="252" z="9" type="ec/nor" id="nor__82" flip="0" angle="0">
+ <item x="284" y="252" z="8" type="ec/nor" id="nor__82" flip="0" angle="0">
   <data type="number" value="2" id="numInput"/>
  </item>
- <item x="92" y="92" z="6" type="ec/resistor" id="resistor" flip="0" angle="90">
+ <item x="92" y="92" z="5" type="ec/resistor" id="resistor" flip="0" angle="90">
   <data type="number" value="1000" id="resistance"/>
  </item>
- <item x="164" y="244" z="3" type="ec/spdt_toggle" id="spdt_toggle" flip="0" angle="180">
+ <item x="164" y="244" z="2" type="ec/spdt_toggle" id="spdt_toggle" flip="0" angle="180">
   <data type="string" value="" id="button_text"/>
   <data type="number" value="0.005" id="bounce_period"/>
   <data type="bool" value="0" id="bounce"/>
   <button id="button" state="0"/>
  </item>
- <item x="156" y="124" z="7" type="ec/spdt_toggle" id="spdt_toggle__47" flip="0" angle="180">
+ <item x="156" y="124" z="6" type="ec/spdt_toggle" id="spdt_toggle__47" flip="0" angle="180">
   <data type="string" value="" id="button_text"/>
   <data type="number" value="0.005" id="bounce_period"/>
   <data type="bool" value="0" id="bounce"/>

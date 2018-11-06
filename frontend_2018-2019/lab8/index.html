@@ -18,7 +18,7 @@
       color: white;
     }
 
-    input, button, textarea {
+    input, button, textarea, select, option {
       color: black;
     }
     
@@ -63,6 +63,59 @@
       box-shadow: 0px 0px 20px #333;
       /* background-size: 1000px; */
     }
+
+    #task8 > table {
+      margin-top: 10px;
+      width: 100%;
+      height: 200px;
+      table-layout: fixed;
+      border-collapse: collapse;
+    }
+
+    #task8 > table td {
+      border: 1px solid white;
+    }
+
+    #t15img {
+      width: 100%;
+      animation-name: a1;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease;
+    }
+
+    @keyframes a1 {
+      0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      }
+
+      33% {
+        transform: rotateX(180deg) rotateY(0deg) rotateZ(180deg);
+      }
+      66%{
+        transform: rotateX(360deg) rotateY(180deg) rotateZ(180deg);
+      }
+      100% {
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+      }
+    }
+
+    @keyframes a2 {
+      0% {
+        filter: blur(0px) grayscale(100);
+      }
+
+      33% {
+        filter: blur(10px) grayscale(100);
+      }
+      66%{
+        filter: blur(5px);
+      }
+      100% {
+        filter: blur(0px);
+      }
+    }
+
   
   </style>
 
@@ -99,16 +152,18 @@
             id="y3"
             placeholder="y3">
         </div>
-        <h3 id="result1"></h3>
+        <h3 id="result1">0</h3>
 
       </div>
 
       <div id="task2">
         <p>#2</p>
         <input type="text"
-          id="t2text1">
+          id="t2text1"
+          placeholder="swapper">
         <input type="text"
-          id="t2text2">
+          id="t2text2"
+          placeholder="swapper">
       </div>
 
       <div id="task3">
@@ -166,6 +221,29 @@
 
       <div id="task7">
         <p>#7</p>
+        <select name=""
+          id="t71">
+          <option value="">Game dev</option>
+          <option value="">Frontend dev</option>
+          <option value="">Backend dev</option>
+        </select>
+        <br>
+        <select name=""
+          id="t72">
+          <option value="">10 днів</option>
+          <option value="">20 днів</option>
+          <option value="">30 днів</option>
+        </select>
+        <br>
+        <select name=""
+          id="t73">
+          <option value="">Українська</option>
+          <option value="">Русский</option>
+          <option value="">Englidh</option>
+        </select>
+        <br>
+        <h3 id="t7">$0</h3>
+
       </div>
 
       <div id="task8">
@@ -173,15 +251,47 @@
 
         <input type="color"
           name=""
-          id="cl">
+          id="t8color">
+        <input type="file"
+          id="t8file">
+
+        <table id="t8">
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
 
       </div>
 
       <div id="task9">
         <p>#9</p>
-        <input type="file"
-          name=""
-          id="">
+        <select name=""
+          id="t9prds">
+          <option value="">Яблука</option>
+          <option value="">Груші</option>
+          <option value="">Апельсини</option>
+          <option value="">Лимони</option>
+        </select>
+        <br>
+        <input type="number"
+          id="t9num"
+          min="1"
+          max="20"
+          value="5">
+        <br>
+        <h3 id="t9">0</h3>
       </div>
 
       <div id="task10">
@@ -191,6 +301,28 @@
         <button id="t10submit">Reverce</button>
       </div>
 
+      <div id="task11">
+        <p>#11</p>
+        <input type="text"
+          id="t11num">
+        <h3 id="t11"
+          style="white-space: pre-line;"></h3>
+
+      </div>
+
+      <div id="task12">
+        <p>#12</p>
+
+      </div>
+
+      <div id="task13">
+        <p>#13</p>
+        <input id="t13in"
+          type="date">
+        <h3 id="t13"></h3>
+
+      </div>
+
       <div id="task14">
         <p>#14</p>
         <textarea name=""
@@ -198,6 +330,14 @@
           cols="30"
           rows="10"></textarea>
         <h3 id="t14res">0</h3>
+
+      </div>
+
+      <div id="task15">
+        <p>#15</p>
+        <img id="t15img"
+          src="t5.jpg"
+          alt="kek">
 
       </div>
 

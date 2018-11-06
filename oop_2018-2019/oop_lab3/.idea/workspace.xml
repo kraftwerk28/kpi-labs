@@ -12,76 +12,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8691f9a-b19b-4c96-9e80-0b771174502f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shape.cc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shape.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend_2018-2019/lab8/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend_2018-2019/lab8/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend_2018-2019/lab8/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend_2018-2019/lab8/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/.idea/oop_lab_1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/bin/dice" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/bin/dice_game.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/bin/main.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/3.12.1/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/3.12.1/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/3.12.1/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/3.12.1/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/3.12.1/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/3.12.1/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/3.12.1/CompilerIdC/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/3.12.1/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/3.12.1/CompilerIdCXX/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/oop_lab_1.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/oop_lab_1.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/oop_lab_1.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/oop_lab_1.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/oop_lab_1.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/oop_lab_1.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/oop_lab_1.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/cmake-build-debug/oop_lab_1.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/dice_game.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/dice_game.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/dice_stats.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/main.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_1/sfml.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_2/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_2/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_2/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_2/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_2/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_2/.idea/oop_lab_2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_2/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_2/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_2/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_2/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_2/file.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_2/lab2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_2/main.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_2/matrix.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop_lab_2/matrix.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comp_arch_2018-2019/lab2/JK-log-trigger.circuit" beforeDir="false" afterPath="$PROJECT_DIR$/../../comp_arch_2018-2019/lab2/JK-log-trigger.circuit" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comp_arch_2018-2019/lab2/JK-trigger.circuit" beforeDir="false" afterPath="$PROJECT_DIR$/../../comp_arch_2018-2019/lab2/JK-trigger.circuit" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comp_arch_2018-2019/lab2/RS-trigger.circuit" beforeDir="false" afterPath="$PROJECT_DIR$/../../comp_arch_2018-2019/lab2/RS-trigger.circuit" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comp_arch_2018-2019/t-trigger.circuit" beforeDir="false" afterPath="$PROJECT_DIR$/../../comp_arch_2018-2019/t-trigger.circuit" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -95,15 +29,15 @@
     <session id="504864950">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="12" />
+          <entry key="project.closed" value="13" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="4" />
-          <entry key="project.open.time.13" value="2" />
+          <entry key="project.open.time.13" value="3" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.15" value="2" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="12" />
+          <entry key="project.opened" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -153,8 +87,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/shape.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="25" column="67" lean-forward="true" selection-start-line="25" selection-start-column="67" selection-end-line="25" selection-end-column="67" />
+            <state relative-caret-position="306">
+              <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
               <folding>
                 <element signature="e#98#125#0" expanded="true" />
               </folding>
@@ -165,7 +99,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shape.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
+            <state relative-caret-position="1207">
               <caret line="71" column="22" lean-forward="true" selection-start-line="71" selection-start-column="22" selection-end-line="71" selection-end-column="22" />
             </state>
           </provider>
@@ -221,7 +155,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -233,6 +166,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -293,16 +227,17 @@
       <workItem from="1539846959267" duration="700000" />
       <workItem from="1539848531224" duration="672000" />
       <workItem from="1539849239804" duration="3675000" />
+      <workItem from="1540065528415" duration="15000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17950000" />
+    <option name="totallyTimeSpent" value="17965000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="732" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20257966" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20561457" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -318,6 +253,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="CMake" order="12" />
+      <window_info anchor="right" id="make" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -334,20 +270,6 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shape.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="71" column="22" lean-forward="true" selection-start-line="71" selection-start-column="22" selection-end-line="71" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.cc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -358,10 +280,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shape.h">
+    <entry file="file://$PROJECT_DIR$/shape.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="71" column="22" lean-forward="true" selection-start-line="71" selection-start-column="22" selection-end-line="71" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Makefile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="25" column="67" lean-forward="true" selection-start-line="25" selection-start-column="67" selection-end-line="25" selection-end-column="67" />
+          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shape.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
           <folding>
             <element signature="e#98#125#0" expanded="true" />
           </folding>
