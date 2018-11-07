@@ -1,0 +1,7 @@
+D:\kpi-repository\programming-basics\ChiffredeVigenere\ChiffredeVigenere\bin\Debug\ChiffredeVigenere.exe.config
+D:\kpi-repository\programming-basics\ChiffredeVigenere\ChiffredeVigenere\bin\Debug\ChiffredeVigenere.exe
+D:\kpi-repository\programming-basics\ChiffredeVigenere\ChiffredeVigenere\bin\Debug\ChiffredeVigenere.pdb
+D:\kpi-repository\programming-basics\ChiffredeVigenere\ChiffredeVigenere\obj\Debug\ChiffredeVigenere.csprojResolveAssemblyReference.cache
+D:\kpi-repository\programming-basics\ChiffredeVigenere\ChiffredeVigenere\obj\Debug\ChiffredeVigenere.csproj.CoreCompileInputs.cache
+D:\kpi-repository\programming-basics\ChiffredeVigenere\ChiffredeVigenere\obj\Debug\ChiffredeVigenere.exe
+D:\kpi-repository\programming-basics\ChiffredeVigenere\ChiffredeVigenere\obj\Debug\ChiffredeVigenere.pdb

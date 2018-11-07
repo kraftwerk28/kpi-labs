@@ -7,6 +7,11 @@
 
 #include <type_traits>
 #include <vector>
+#include <typeinfo>
+#include <iostream>
+
+
+#define children_count 20
 
 using std::vector;
 
@@ -51,33 +56,37 @@ public:
     kindergarten();
 
     template<class group_type>
-    void request_place(group_type child)
+    void request_place(group_type *child)
     {
         using std::is_same;
-        if (is_same<group_type, nursery>::value)
+        if (nursery_group.size() < children_count &&
+            is_same<group_type, nursery>::value == 1)
         {
             nursery_group.push_back(child);
-            nursery_group.end()->reserved = true;
-        } else if (is_same<group_type, young>::value)
+        } else if (nursery_group.size() < children_count &&
+                   is_same<group_type, young>::value == 1)
         {
             young_group.push_back(child);
-            young_group.end()->reserved = true;
-        } else if (is_same<group_type, middle>::value)
+        } else if (nursery_group.size() < children_count &&
+                   is_same<group_type, middle>::value == 1)
         {
             middle_group.push_back(child);
-            middle_group.end()->reserved = true;
-        } else if (is_same<group_type, old>::value)
+        } else if (nursery_group.size() < children_count &&
+                   is_same<group_type, old>::value == 1)
         {
             old_group.push_back(child);
-            old_group.end()->reserved = true;
         }
+        std::cout << "plase has been reserved\n\n";
     }
 
+    // returns true on success
+    bool unreserve(int group_type, int index);
+
 private:
-    vector<nursery> nursery_group;
-    vector<young> young_group;
-    vector<middle> middle_group;
-    vector<old> old_group;
+    vector<kindergarten_group *> nursery_group;
+    vector<kindergarten_group *> young_group;
+    vector<kindergarten_group *> middle_group;
+    vector<kindergarten_group *> old_group;
 };
 
 
