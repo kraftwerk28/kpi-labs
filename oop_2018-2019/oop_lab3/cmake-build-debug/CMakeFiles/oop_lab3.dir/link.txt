@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/oop_lab3.dir/main.cc.o CMakeFiles/oop_lab3.dir/shape.cc.o  -o oop_lab3 
