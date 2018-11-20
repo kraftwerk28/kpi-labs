@@ -15,8 +15,6 @@
 
 using std::vector;
 
-typedef unsigned int u_int;
-
 struct kindergarten_group
 {
     int lowest_age;
@@ -59,22 +57,22 @@ public:
     void request_place(group_type *child)
     {
         using std::is_same;
-        if (nursery_group.size() < children_count &&
+        if (nursery_index < children_count &&
             is_same<group_type, nursery>::value == 1)
         {
-            nursery_group.push_back(child);
-        } else if (nursery_group.size() < children_count &&
+            nursery_group[nursery_index++] = child;
+        } else if (nursery_index < children_count &&
                    is_same<group_type, young>::value == 1)
         {
-            young_group.push_back(child);
-        } else if (nursery_group.size() < children_count &&
+            young_group[young_index++] = child;
+        } else if (nursery_index < children_count &&
                    is_same<group_type, middle>::value == 1)
         {
-            middle_group.push_back(child);
-        } else if (nursery_group.size() < children_count &&
+            middle_group[middle_index++] = child;
+        } else if (nursery_index < children_count &&
                    is_same<group_type, old>::value == 1)
         {
-            old_group.push_back(child);
+            old_group[old_index++] = child;
         }
         std::cout << "plase has been reserved\n\n";
     }
@@ -83,10 +81,15 @@ public:
     bool unreserve(int group_type, int index);
 
 private:
-    vector<kindergarten_group *> nursery_group;
-    vector<kindergarten_group *> young_group;
-    vector<kindergarten_group *> middle_group;
-    vector<kindergarten_group *> old_group;
+    kindergarten_group **nursery_group;
+    kindergarten_group **young_group;
+    kindergarten_group **middle_group;
+    kindergarten_group **old_group;
+
+    int nursery_index = 0;
+    int young_index = 0;
+    int middle_index = 0;
+    int old_index = 0;
 };
 
 

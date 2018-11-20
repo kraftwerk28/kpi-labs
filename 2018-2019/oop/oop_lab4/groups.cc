@@ -7,18 +7,18 @@
 
 kindergarten::kindergarten()
 {
-    nursery_group = vector<kindergarten_group *>();
-    young_group = vector<kindergarten_group *>();
-    middle_group = vector<kindergarten_group *>();
-    old_group = vector<kindergarten_group *>();
+    nursery_group = new kindergarten_group *[children_count];
+    young_group = new kindergarten_group *[children_count];
+    middle_group = new kindergarten_group *[children_count];
+    old_group = new kindergarten_group *[children_count];
 }
 
 bool kindergarten::unreserve(int group_type, int index)
 {
-    std::cout << nursery_group.capacity() << " "
-              << young_group.size() << " "
-              << middle_group.size() << " "
-              << old_group.size() << "\n\n";
+    std::cout << nursery_index << " "
+              << young_index << " "
+              << middle_index << " "
+              << old_index << "\n\n";
 
     switch (group_type)
     {
