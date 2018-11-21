@@ -55,24 +55,24 @@ matrix::~matrix()
 }
 
 
-void matrix::print() const
+void matrix::print(std::ostream &s) const
 {
-    using std::cout;
+//    using std::cout;
     using std::endl;
 
-    cout << endl;
+    s << endl;
     for (int r = 0, c = 0; r < h; r++)
     {
 
-        cout << (r == 0 ? "┌" : (r == h - 1 ? "└" : "│")) << "\t";
+        s << (r == 0 ? "┌" : (r == h - 1 ? "└" : "│")) << "\t";
         for (; c < w; c++)
         {
-            cout << body[r][c] << "\t";
+            s << body[r][c] << "\t";
         }
         c = 0;
-        cout << (r == 0 ? "┐" : (r == h - 1 ? "┘" : "│")) << endl;
+        s << (r == 0 ? "┐" : (r == h - 1 ? "┘" : "│")) << endl;
     }
-    cout << endl;
+    s << endl;
 }
 
 matrix matrix::operator+(const matrix &m) const
@@ -100,7 +100,7 @@ matrix matrix::operator-(const matrix &m) const
 matrix matrix::operator*(const matrix &m) const
 {
     if (w != m.h)
-        throw "Error in matrix multiplication. Aborting...\n";
+        throw wrong_dimensions(this);
     const auto result = matrix(h, m.w);
     for (uint r = 0; r < h; r++)
     {
@@ -238,7 +238,7 @@ matrix matrix::transp() const
 
 std::ostream &operator<<(std::ostream &s, const matrix &m)
 {
-    m.print();
+    m.print(s);
     return s;
 }
 

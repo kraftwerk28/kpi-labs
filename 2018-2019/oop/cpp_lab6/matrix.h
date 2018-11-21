@@ -56,7 +56,7 @@ public:
 
     matrix transp() const;
 
-    void print() const;
+    void print(std::ostream &s) const;
 
     void push(double val);
 
@@ -76,7 +76,7 @@ private:
     double gaussian_det() const;
 };
 
-// exceptions
+// -----EXCEPTION CLASSES-----
 class matrix_exception : public std::exception
 {
 public:
@@ -97,5 +97,24 @@ public:
         : matrix_exception("matrix should be square", source) {}
 };
 
+class wrong_dimensions : public matrix_exception
+{
+public:
+    explicit wrong_dimensions(const matrix *source)
+        : matrix_exception(
+        "matrix A width should be equal to matrix B height.",
+        source
+    ) {};
+};
+
+class bad_file : public matrix_exception
+{
+public:
+    explicit bad_file(const matrix *source)
+        : matrix_exception(
+        "Error while opening file. Aborting.",
+        source
+    ) {}
+};
 
 #endif //OOP_LAB_2_MATRIX_H

@@ -1,19 +1,17 @@
 //
-// Created by kraftwerk28 on 30.10.18.
+// Created by kraftwerk28 on 21.11.18.
 //
 
 #ifndef OOP_LAB4_GROUPS_H
 #define OOP_LAB4_GROUPS_H
 
 #include <type_traits>
-#include <vector>
 #include <typeinfo>
 #include <iostream>
 
 
 #define children_count 20
 
-using std::vector;
 
 struct kindergarten_group
 {
