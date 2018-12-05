@@ -1,3 +1,5 @@
+package com.kraftwerk28.recbook;
+
 public class RecBook {
     private String name, surname, patronymic;
     private short course;
@@ -50,15 +52,5 @@ public class RecBook {
             res += subject.score;
         }
         return res / subjects.length;
-    }
-}
-
-class Subject {
-    String name;
-    float score;
-
-    public Subject(String _name, float _score) {
-        name = _name;
-        score = _score;
     }
 }

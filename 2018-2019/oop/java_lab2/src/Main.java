@@ -1,5 +1,5 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import com.kraftwerk28.lab2.Lab2;
+
 import java.util.Scanner;
 
 public class Main {
