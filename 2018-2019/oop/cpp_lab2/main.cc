@@ -1,77 +1,59 @@
 #include <iostream>
-#include "matrix.h"
-#include <ctime>
-#include <fstream>
-#include <thread>
 
-#define BIG_DIM 5000
+#include "matrix.h"
+#include "danilevskyi_method.h"
+#include "krylov_method.h"
 
 int main()
 {
-    using std::cout;
-    using std::cin;
-    using std::endl;
+  using std::cout;
+  using std::cin;
+  using std::endl;
 
-    cout << "--------------------\n";
+  cout << "--------------------\n";
 
-    auto
-        mtrx1 = matrix(
-        {
-            {2, 5,  7},
-            {6, 3,  4},
-            {5, -2, -3}
-        }),
-
-        mtrx2 = matrix(
-        {
-            {2,  6,  7},
-            {-4, 8,  2},
-            {4,  -2, -1}
-        }),
-
-        m3 = matrix(
-        {
-            {2, 3},
-            {1, 1}
-        });
-
-    cout << ~mtrx2 << endl;
-    cout << mtrx1 * mtrx2;
-    cout << mtrx1 + mtrx2;
-    cout << !mtrx2;
-
-    auto mtrxcin = matrix(2, 2);
-//    uint count = mtrxcin.size();
-//    while (count--)
-//    {
-//        cout << "> ";
-//        cin >> mtrxcin;
-//    }
-
-
-    std::ifstream f("./file.txt");
-    uint count = mtrxcin.size();
-    std::string ss;
-    while (count--)
+  // Тестовая матрица
+  matrix A1{
     {
-        f >> mtrxcin;
+      {2, 1, 4},
+      {3, 2, -1},
+      {5, 3, 2}
     }
+  };
+  matrix A2{
+    {
+      {1, -2},
+      {-6, 3}
+    }
+  };
+  matrix A3{
+    {
+      {1, 2, 3, 4},
+      {2, 2, 1, 2},
+      {2, 1, 3, 1},
+      {3, 3, 2, 1}
+    }
+  };
 
-    cout << mtrxcin;
-    /*
-    cout << "--------------------\n";
+  cout << "Метод Крылова:" << endl;
+  const vector<double> _lambdas11 = lambdas(A2);
+  cout << endl << "Матрица Фробениуса:" << frobenius(A2);
+  for (int i = 0; i < _lambdas11.size(); ++i)
+  {
+    cout << "Лямбда #" << (i + 1) << " = " << _lambdas11[i] << ":" << endl;
+    print_own_vector(A2, _lambdas11[i]);
+  }
 
-    auto mmm = matrix(BIG_DIM, BIG_DIM);
+  const vector<double> _lambdas12 = lambdas(A1);
+  cout << endl << "Матрица Фробениуса:" << frobenius(A1);
+  for (int i = 0; i < _lambdas12.size(); ++i)
+  {
+    cout << "Лямбда #" << (i + 1) << " = " << _lambdas12[i] << ":" << endl;
+    print_own_vector(A2, _lambdas12[i]);
+  }
 
-    auto begin = clock();
-    cout << ~mmm << endl;
-    auto end = clock();
+  cout << endl << "Метод Крылова:" << endl;
+  solve_krylov(A3);
 
-    cout << "Calculating " << BIG_DIM << "x" << BIG_DIM << " determinant:\n"
-         << (double) (end - begin) / CLOCKS_PER_SEC * 1000 << "ms\n"
-         << "Memory allocated: " << BIG_DIM * BIG_DIM *
-                                    sizeof(double) << " bytes" << endl;
-    */
-
-    return 0;
+  return 0;
 }

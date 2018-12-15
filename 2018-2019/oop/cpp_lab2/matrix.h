@@ -4,9 +4,11 @@
 
 #ifndef OOP_LAB_2_MATRIX_H
 #define OOP_LAB_2_MATRIX_H
-#define log(x) #x std::cout << x << std::endl
+#define DO_GAUSSIAN false
+#define FIELD_WIDTH 7
 
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include <typeinfo>
 #include <thread>
@@ -18,59 +20,85 @@ typedef unsigned int uint;
 class matrix
 {
 public:
-    matrix();
+  matrix();
 
-    matrix(uint _rows, uint _columns);
+  matrix(uint _rows, uint _columns);
 
-    matrix(list<list<double>> arg);
+  matrix(list<list<double>> arg);
 
-    matrix(const matrix &cp);
+  matrix(const matrix &cp);
 
-    ~matrix();
+  ~matrix();
 
 
-    matrix operator+(const matrix &m) const;
+  matrix operator+(const matrix &m) const;
 
-    matrix operator-(const matrix &m) const;
+  matrix operator-(const matrix &m) const;
 
-    matrix operator*(const matrix &m) const;
+  matrix operator*(const matrix &m) const;
 
-    matrix operator*(double num) const;
+  matrix operator*(double num) const;
 
-    matrix operator/(const matrix &m) const;
+  matrix operator/(const matrix &m) const;
 
-    double *operator[](int i) const;
+  double *operator[](int i) const;
 
-    // anti-matrix
-    matrix operator!() const;
+  double *operator[](int i);
 
-    // determinant
-    double operator~() const;
+  matrix operator=(const matrix &m);
 
-    friend std::ostream &operator<<(std::ostream &s, const matrix &m);
+  // anti-matrix
+  // обратная матрица
+  matrix operator!() const;
 
-    friend std::istream &operator>>(std::istream &s, matrix &m);
+  // determinant
+  // определитель
+  double operator~() const;
 
-    matrix transp() const;
+  // вывод матрицы в консоль
+  friend std::ostream &operator<<(std::ostream &s, const matrix &m);
 
-    void print() const;
+  friend std::istream &operator>>(std::istream &s, matrix &m);
 
-    void push(double val);
+  // транспонированная матрица
+  matrix transp() const;
 
-    uint size() const;
+  // LU-разложение
+  matrix LU() const;
+
+  void print() const;
+
+  // одиночное добавление числа в матрицу
+  void push(double val);
+
+  void pushall(list<double> args)
+  {
+    for (const auto &v : args)
+    {
+      push(v);
+    }
+  }
+
+  uint size() const;
+
+  uint columns() const;
+
+  uint rows() const;
+
+  matrix triangled() const;
+
+  static matrix unit_matrix(uint dim);
 
 private:
-    double **body;
+  double **body;
 
-    matrix LU() const;
+  uint push_pos_r = 0, push_pos_c = 0;
 
-    uint push_pos_r = 0, push_pos_c = 0;
+  uint w = 0, h = 0;
 
-    uint w = 0, h = 0;
+  matrix sub_mat(uint _r, uint _c) const;
 
-    matrix sub_mat(uint _r, uint _c) const;
-
-    double gaussian_det() const;
+  double gaussian_det() const;
 };
 
 
