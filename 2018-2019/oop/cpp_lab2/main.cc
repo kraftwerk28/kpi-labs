@@ -6,13 +6,14 @@
 
 int main()
 {
+  // подключаем нужніе классы для ввода-вывода
   using std::cout;
   using std::cin;
   using std::endl;
 
   cout << "--------------------\n";
 
-  // Тестовая матрица
+  // Тестовые матрицы
   matrix A1{
     {
       {2, 1, 4},
@@ -35,15 +36,23 @@ int main()
     }
   };
 
-  cout << "Метод Крылова:" << endl;
+
+  cout << "Метод Данилевского:" << endl;
+  // Ищем собственные числа
   const vector<double> _lambdas11 = lambdas(A2);
+
+  // Ищем матрицу Фробениуса
   cout << endl << "Матрица Фробениуса:" << frobenius(A2);
+
+  // Находим собственные векторы
   for (int i = 0; i < _lambdas11.size(); ++i)
   {
     cout << "Лямбда #" << (i + 1) << " = " << _lambdas11[i] << ":" << endl;
     print_own_vector(A2, _lambdas11[i]);
   }
 
+
+  // То же, только для другой матрицы (3х3)
   const vector<double> _lambdas12 = lambdas(A1);
   cout << endl << "Матрица Фробениуса:" << frobenius(A1);
   for (int i = 0; i < _lambdas12.size(); ++i)
@@ -53,7 +62,9 @@ int main()
   }
 
   cout << endl << "Метод Крылова:" << endl;
+
   solve_krylov(A3);
+
 
   return 0;
 }
