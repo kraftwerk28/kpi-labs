@@ -45,7 +45,7 @@ public:
 
   double *operator[](int i);
 
-  matrix operator=(const matrix &m);
+  matrix& operator=(const matrix &_m);
 
   // anti-matrix
   // обратная матрица
@@ -86,6 +86,8 @@ public:
   uint rows() const;
 
   matrix triangled() const;
+
+  matrix trian() const;
 
   static matrix unit_matrix(uint dim);
 

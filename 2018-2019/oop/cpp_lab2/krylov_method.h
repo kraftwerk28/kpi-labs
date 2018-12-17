@@ -10,6 +10,7 @@
 #include <stdio.h>
 
 #include "matrix.h"
+#include "danilevskyi_method.h"
 
 //Объявим прототипы процедур и функций
 void dispArr(double **Arr, int i, int j, char t[7]);
@@ -120,7 +121,8 @@ double *urDiv(double *P, double a, int n) //Деление уравнения
   return P;
 }
 
-double urTest4(double a, double b, double *P) //Проверка знаков на концах отрезка
+double
+urTest4(double a, double b, double *P) //Проверка знаков на концах отрезка
 {
   double r1 =
     P[4] * pow(a, 4) - P[3] * pow(a, 3) - P[2] * pow(a, 2) - P[1] * a - P[0];
@@ -229,6 +231,12 @@ void solve_krylov(matrix &m)
     std::cout << "О»[" << ni - i + 1 << "]: " << lambda[i - 1] << ";\n";
   }
   std::cout << "------------------------------ \n";
+  for (int i = 0; i < ni; ++i)
+  {
+    cout << "Лямбда: " << lambda[i] << ";\n";
+    print_own_vector(m, lambda[i]);
+  }
+
 }
 
 #endif //OOP_LAB_2_KRYLOV_METHOD_H

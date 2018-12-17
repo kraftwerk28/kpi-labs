@@ -35,6 +35,12 @@ int main()
       {3, 3, 2, 1}
     }
   };
+  matrix A4{
+    {
+      {-3, -6},
+      {2, 4}
+    }
+  };
 
 
   cout << "Метод Данилевского:" << endl;
@@ -58,7 +64,7 @@ int main()
   for (int i = 0; i < _lambdas12.size(); ++i)
   {
     cout << "Лямбда #" << (i + 1) << " = " << _lambdas12[i] << ":" << endl;
-    print_own_vector(A2, _lambdas12[i]);
+    print_own_vector(A1, _lambdas12[i]);
   }
 
   cout << endl << "Метод Крылова:" << endl;

@@ -359,9 +359,28 @@ matrix matrix::unit_matrix(uint dim)
   return res;
 }
 
-matrix matrix::operator=(const matrix &m)
+matrix &matrix::operator=(const matrix &_m)
 {
-  return matrix{m};
+  new(this)matrix(_m);
+  return *this;
+}
+
+matrix matrix::trian() const
+{
+  matrix res{*this};
+  int n = rows();
+  double **a = res.body;
+
+  for (int i = 0; i < n - 1; i++)
+  {
+    for (int j = i + 1; j < n; j++)
+    {
+      double koef = a[j][i] / a[i][i];
+      for (int k = i; k < n; k++)
+        a[j][k] -= a[i][k] * koef;
+    }
+  }
+  return res;
 }
 
 /*

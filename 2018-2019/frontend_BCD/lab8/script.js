@@ -9,15 +9,15 @@ function el(str) {
     return document.getElementsByClassName(str.slice(1));
 }
 
-HTMLElement.prototype.ael = function (str, callback, params) {
+HTMLElement.prototype.ael = function(str, callback, params) {
   this.addEventListener.call(this, str, callback, params);
 }
 
-HTMLCollection.prototype.each = function (callback) {
+HTMLCollection.prototype.each = function(callback) {
   Array.prototype.forEach.call(this, callback);
 }
 
-el('#result1').ael('click', function () {
+el('#result1').ael('click', function() {
   const
     len = (x1, y1, x2, y2) => Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2),
     x1 = el('#x1').value,
@@ -39,13 +39,13 @@ el('#result1').ael('click', function () {
 });
 
 
-el('#t2text2').ael('blur', function () {
+el('#t2text2').ael('blur', function() {
   const temp = this.value;
   this.value = el('#t2text1').value;
   el('#t2text1').value = temp;
 });
 
-el('#t3submit').ael('click', function () {
+el('#t3submit').ael('click', function() {
   const nums = el('#t3')
     .value
     .trim()
@@ -62,7 +62,7 @@ el('#t3submit').ael('click', function () {
 
 });
 
-el('#t4check').ael('click', function () {
+el('#t4check').ael('click', function() {
   const s1 = +el('#t4s1').value;
   const s2 = +el('#t4s2').value;
   const s3 = +el('#t4s3').value;
@@ -83,7 +83,7 @@ const { width, height } = el('#t5img').getBoundingClientRect();
 scaler.style.backgroundSize = width * 2 + 'px';
 // const koefX = 1000 / el('#t4img').offsetWidth;
 // const koefY = 1000 / el('#t4img').offsetHeight;
-el('#t5img').ael('mousemove', function ({ clientX, clientY }) {
+el('#t5img').ael('mousemove', function({ clientX, clientY }) {
   const { left, top } = this.getBoundingClientRect();
   scaler.style.display = 'block';
   scaler.style.left = clientX + 10 + 'px';
@@ -93,7 +93,7 @@ el('#t5img').ael('mousemove', function ({ clientX, clientY }) {
   scaler.style.backgroundPositionY = (-clientY + top) * 2 + height / 4 + 'px';
 });
 
-el('#t5img').ael('mouseleave', function () {
+el('#t5img').ael('mouseleave', function() {
   scaler.style.display = 'none';
 })
 
@@ -108,7 +108,7 @@ function t6setAl() {
 el('#t6left').oninput = t6setAl;
 el('#t6center').oninput = t6setAl;
 el('#t6right').oninput = t6setAl;
-el('#t6size').ael('input', function () {
+el('#t6size').ael('input', function() {
   hr.setAttribute('size', this.value);
 });
 
@@ -116,7 +116,7 @@ el('#t6size').ael('input', function () {
 const prices1 = [100, 150, 120];
 const prices2 = [30, 55, 100];
 const prices3 = [50, 50, 70];
-el('#t7').ael('click', function () {
+el('#t7').ael('click', function() {
   this.innerText = '$' +
     (prices1[el('#t71').selectedIndex] +
       prices2[el('#t72').selectedIndex] +
@@ -124,10 +124,10 @@ el('#t7').ael('click', function () {
 });
 
 // t8
-el('#t8color').ael('change', function () {
+el('#t8color').ael('change', function() {
   el('#t8').style.backgroundColor = this.value;
 });
-el('#t8file').ael('change', function () {
+el('#t8file').ael('change', function() {
   el('#t8').getElementsByTagName('td').each((el) => {
     el.style.backgroundImage = `url(${this.value})`;
   });
@@ -135,18 +135,18 @@ el('#t8file').ael('change', function () {
 
 // t9
 const prices4 = [20, 15, 35, 40];
-el('#t9').ael('click', function () {
+el('#t9').ael('click', function() {
   this.innerText = (prices4[el('#t9prds').selectedIndex] * +el('#t9num').value) + 'грн.'
 });
 
 
 // t10
-el('#t10submit').ael('click', function () {
+el('#t10submit').ael('click', function() {
   el('#t10').value = +el('#t10').value.toString().split('').reverse().join('');
 });
 
 // t11
-el('#t11num').ael('input', function () {
+el('#t11num').ael('input', function() {
   let num = +this.value;
   if (isNaN(num)) return;
   let res = '';
@@ -164,6 +164,16 @@ el('#t11num').ael('input', function () {
   el('#t11').innerText = res.slice(0, res.length - 2);
 });
 
+el('#t12').innerText = (() => {
+  let res = 0;
+  for (let i = 111111; i < 999999; ++i) {
+    const str = i.toString();
+    if (+str[0] + +str[1] + +str[2] === +str[3] + +str[4] + +str[5]) {
+      res++;
+    }
+  }
+  return res;
+})();
 
 // t13
 function getWeekNumber(d) {
@@ -174,19 +184,19 @@ function getWeekNumber(d) {
   return [d.getUTCFullYear(), weekNo];
 }
 
-el('#t13in').ael('input', function () {
+el('#t13in').ael('input', function() {
   el('#t13').innerText = getWeekNumber(new Date(Date.parse(this.value)))[1];
 });
 
 // t14
-el('#t14').ael('input', function () {
+el('#t14').ael('input', function() {
   el('#t14res').innerText = this.value.trim().replace(/\s+/g, ' ').split(' ').length;
 });
 
 
 // t15
 let t15ann = 'a1';
-el('#t15img').ael('click', function () {
+el('#t15img').ael('click', function() {
   t15ann = t15ann === 'a1' ? 'a2' : 'a1';
   this.style.animationName = t15ann;
 });
