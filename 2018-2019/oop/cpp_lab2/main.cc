@@ -67,6 +67,15 @@ int main()
     print_own_vector(A1, _lambdas12[i]);
   }
 
+  // То же, только для другой матрицы (4x4)
+  const vector<double> _lambdas13 = lambdas(A3);
+  cout << endl << "Матрица Фробениуса:" << frobenius(A3);
+  for (int i = 0; i < _lambdas13.size(); ++i)
+  {
+    cout << "Лямбда #" << (i + 1) << " = " << _lambdas13[i] << ":" << endl;
+    print_own_vector(A1, _lambdas13[i]);
+  }
+
   cout << endl << "Метод Крылова:" << endl;
 
   solve_krylov(A3);

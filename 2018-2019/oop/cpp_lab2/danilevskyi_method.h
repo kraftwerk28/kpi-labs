@@ -6,7 +6,8 @@
 #define OOP_LAB_2_DANILEVSKYI_METHOD_H
 
 #include "matrix.h"
-#include "vector"
+#include "poly34.h"
+#include <vector>
 #include <cmath>
 
 using std::cout;
@@ -139,6 +140,17 @@ vector<double> lambdas(matrix &m)
     if (is2Imag) res.push_back(x2);
     if (is3Imag) res.push_back(x3);
     return res;
+  } else if (m.columns() == 4)
+  {
+    auto frob = frobenius(m);
+    double a = frob[0][0], b = frob[0][1], c = frob[0][2], d = frob[0][3];
+    auto solves = new double[4];
+    int cnt = SolveP4(solves, -a, -b, -c, -d);
+    while (cnt)
+    {
+      cnt--;
+      res.push_back(solves[cnt]);
+    }
   }
 
   res.shrink_to_fit();
