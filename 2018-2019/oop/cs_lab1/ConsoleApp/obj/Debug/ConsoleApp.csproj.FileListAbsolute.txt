@@ -1,0 +1,5 @@
+D:\kpi\2018-2019\oop\cs_lab1\ConsoleApp\obj\Debug\ConsoleApp.csprojResolveAssemblyReference.cache
+D:\kpi\2018-2019\oop\cs_lab1\ConsoleApp\bin\Debug\ConsoleApp.exe
+D:\kpi\2018-2019\oop\cs_lab1\ConsoleApp\bin\Debug\ConsoleApp.pdb
+D:\kpi\2018-2019\oop\cs_lab1\ConsoleApp\obj\Debug\ConsoleApp.exe
+D:\kpi\2018-2019\oop\cs_lab1\ConsoleApp\obj\Debug\ConsoleApp.pdb
