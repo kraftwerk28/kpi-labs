@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Xml.Schema;
 
 namespace CSLab1
 {
@@ -95,6 +96,27 @@ namespace CSLab1
         res += exam.ToString();
       }
 
+      return res;
+    }
+
+    public List<Examination> IterateExams()
+    {
+      var res = new List<Examination>();
+
+      foreach (var i in Exams)
+      {
+        if (i.IsDifferentiable)
+          res.Add(i);
+      }
+
+      return res;
+    }
+
+
+    public List<Examination> GetSortedExams()
+    {
+      var res = new List<Examination>(Exams);
+      res.Sort((a, b) => string.Compare(a.SubjectName, b.SubjectName));
       return res;
     }
   }

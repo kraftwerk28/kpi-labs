@@ -7,6 +7,16 @@ namespace CSLab1
   {
     public static void Main(string[] args)
     {
+      /*
+      
+      -------------------------------------------------------------------------------------
+      | Виконав: Амброс В. В., ІП-71                                                      |
+      | Варіанти № 1, 3, 8, 12                                                            |
+      | Реалізації завдань з варіантів у файлах IMarkNames.cs, Student.cs, Examination.cs |
+      -------------------------------------------------------------------------------------
+      
+      */
+      
       Console.OutputEncoding = Encoding.UTF8;
 
       var st = new Student();
@@ -19,7 +29,7 @@ namespace CSLab1
         "09.01.2019"));
       st.Exams.Add(new Examination(2, "Архітектура комп'ютера", "Коган А. В.",
         100, true, "17.01.2019"));
-      
+
       st.PrintFullInfo();
 
       Console.ReadLine();
