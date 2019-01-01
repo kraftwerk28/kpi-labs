@@ -154,7 +154,7 @@ void print_own_vector(matrix &m, double lambda)
 
   } else if (m.rows() == 4)
   {
-    matrix t{m.trian()};
+    matrix t = m.trian();
     for (int k = 0; k < m.rows(); ++k)
     {
       t[k][k] -= lambda;
