@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 
+
 namespace CSLab1
 {
   internal class Program

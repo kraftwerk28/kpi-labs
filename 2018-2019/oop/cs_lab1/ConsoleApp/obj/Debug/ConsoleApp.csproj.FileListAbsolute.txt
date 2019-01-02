@@ -1,5 +1,6 @@
-D:\kpi\2018-2019\oop\cs_lab1\ConsoleApp\obj\Debug\ConsoleApp.csprojResolveAssemblyReference.cache
-D:\kpi\2018-2019\oop\cs_lab1\ConsoleApp\bin\Debug\ConsoleApp.exe
-D:\kpi\2018-2019\oop\cs_lab1\ConsoleApp\bin\Debug\ConsoleApp.pdb
-D:\kpi\2018-2019\oop\cs_lab1\ConsoleApp\obj\Debug\ConsoleApp.exe
-D:\kpi\2018-2019\oop\cs_lab1\ConsoleApp\obj\Debug\ConsoleApp.pdb
+D:\kpi\2018-2019\oop\cs_lab1\ConsoleApp\bin\Debug\CSLab1.exe
+D:\kpi\2018-2019\oop\cs_lab1\ConsoleApp\bin\Debug\CSLab1.pdb
+D:\kpi\2018-2019\oop\cs_lab1\ConsoleApp\obj\Debug\ConsoleApp.csprojAssemblyReference.cache
+D:\kpi\2018-2019\oop\cs_lab1\ConsoleApp\obj\Debug\ConsoleApp.csproj.CoreCompileInputs.cache
+D:\kpi\2018-2019\oop\cs_lab1\ConsoleApp\obj\Debug\CSLab1.exe
+D:\kpi\2018-2019\oop\cs_lab1\ConsoleApp\obj\Debug\CSLab1.pdb
