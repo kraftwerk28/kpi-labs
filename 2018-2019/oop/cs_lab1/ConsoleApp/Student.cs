@@ -99,6 +99,21 @@ namespace CSLab1
       return res;
     }
 
+    public IEnumerable<Examination> IterateExamss()
+    {
+      foreach (Examination examination in Exams)
+      {
+        if (examination.IsDifferentiable)
+        {
+          yield return examination;
+        }
+        else
+        {
+          yield break;
+        }
+      }
+    }
+
     public List<Examination> IterateExams()
     {
       var res = new List<Examination>();
