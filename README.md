@@ -9,5 +9,9 @@
 [Об'єктно-орієнтоване програмування](https://github.com/kraftwerk28/kpi-labs/tree/master/2018-2019/oop) (Муха І. П., Пономаренко Р. М., Іванова Л. М.)  
 [Архітектура комп'ютера](https://github.com/kraftwerk28/kpi-labs/tree/master/2018-2019/comp_arch) (Коган А. В., Майер Леонід)  
 [Основи клієнтської розробки](https://github.com/kraftwerk28/kpi-labs/tree/master/2018-2019/frontend_BCD) (Ковтунець О. В.)  
+Coming soon...
+
+## 3-й курс **2019-2020**:
+Coming soon...
 
 ###### Made for KPI
