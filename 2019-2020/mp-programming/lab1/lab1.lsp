@@ -29,7 +29,8 @@
 ;; --------------------------------------------------
 ;; task3
 (defun task3 (a b)
-  (cond ((integerp (car a)) b)
+  (cond
+    ((integerp (car a)) b)
     (t (cons (car a) (cdr b)))))
 
 (print (task3 '(1.0 2 3) '(4 5 6)))
