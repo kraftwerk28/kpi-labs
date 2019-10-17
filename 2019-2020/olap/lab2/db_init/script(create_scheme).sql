@@ -1,0 +1,9 @@
+-- --create user task1 with password task3
+-- CREATE USER task3 WITH PASSWORD 'task3';
+-- -- create tablespace
+-- DEFAULT TABLESPACE users quota 10M;
+-- -- limit temporary tablespace 10mb
+-- TEMPORARY TABLESPACE TEMP quota 10M ON users;
+--
+-- -- add grants
+-- GRANT connect, resource TO task3;
