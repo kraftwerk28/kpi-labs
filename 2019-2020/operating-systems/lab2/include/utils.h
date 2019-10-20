@@ -5,7 +5,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-extern void print_byte(char c) {
+extern int pool_size;
+extern void* pool_ptr;
+extern void* pool_ptr_end;
+
+void print_byte(char c) {
   char* repr = (char*)malloc(sizeof(char) * 8);
   memset(repr, '0', 8);
   repr[8] = '\0';

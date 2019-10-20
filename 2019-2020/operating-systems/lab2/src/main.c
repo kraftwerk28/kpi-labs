@@ -2,15 +2,16 @@
 #include "utils.h"
 #include "tests.h"
 
-#define POOL_SIZE 1024;
+int pool_size = 1024;
+void* pool_ptr;
+void* pool_ptr_end;
 
 int main(int argc, char const *argv[]) {
-  int pool_size = POOL_SIZE;
-  void* pool_ptr = malloc(pool_size);
-
-  run_tests(pool_ptr, pool_size)
-    ? printf("Testing successfull!\n")
-    : printf("Testing failed!\n");
+  pool_ptr = malloc(pool_size);
+  pool_ptr_end = pool_ptr + pool_size;
+  run_tests()
+    ? printf("Testing failed!\n")
+    : printf("Testing successfull!\n");
 
   free(pool_ptr);
   return EXIT_SUCCESS;

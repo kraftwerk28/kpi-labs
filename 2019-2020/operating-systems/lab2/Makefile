@@ -1,4 +1,4 @@
-GCC_FLAGS := -Wno-unused-function -I include
+GCC_FLAGS := -Wno-unused-function -fpic -I include/
 SRCS := src/*.c
 BIN := bin/allocator
 
