@@ -8,23 +8,28 @@
     ((null lst) lst)
     (t (append (rev lst) (task1 (cdr lst))))))
     
-;; (print (task1 '(1 2 3 4)))
+(print (task1 '(1 2 3 4)))
 
+;; result: (4 3 2 1 4 3 2 4 3 4)
 
 ;; insertion sort
-;; (defun task3 (i l &optional (k #'<))
-;;   (if (null l)
-;;     (list i)
-;;     (if (funcall k i (car l))
-;;       (cons i l)
-;;       (cons (car l) (task3 i (cdr l) k)))))
+(defun insert (i l &optional (k #'<))
+  (if (null l)
+    (list i)
+    (if (funcall k i (car l))
+      (cons i l)
+      (cons (car l) (insert i (cdr l) k)))))
 
 (defun task3 (lst &optional (key #'<))
   (if (null lst)
     lst
-    (task3 (car lst) (task3 (cdr lst) key) key)))
+    (insert (car lst) (task3 (cdr lst) key) key)
+  )
+)
 
-;; (print (task3 '(3 2 4 4 1)))
+(print (task3 '(3 2 4 4 1)))
+
+;; result (1 2 3 4 4)
 
 
 ;; merge lists
@@ -41,8 +46,9 @@
     (t
       (task4 l1 (cdr l2) (append res (list (car l2)))))))
 
-;; (print (task4 '(1 4 6 7) '(2 3 5 10)))
+(print (task4 '(1 4 6 7) '(2 3 5 10)))
 
+;; result (1 2 3 4 5 6 7 10)
 
 ;; sub list search
 (defun task5 (l lst depth)

@@ -89,8 +89,7 @@
 
 
 ;; load/save
-
-(defun db-save(path db)
+(defun db-save (path db)
   (with-open-file 
     (
       out path :direction :output
@@ -102,7 +101,7 @@
   db
 )
 
-(defun db-load(path)
+(defun db-load (path)
   (with-open-file (in path)
     (with-standard-io-syntax (read in))
   )

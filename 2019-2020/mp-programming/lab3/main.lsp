@@ -1,3 +1,12 @@
+;; usage
+;; exit, q - exit cli
+;; set - set key
+;; get - get key
+;; del - delete key
+;; print - print tabled database
+;; load - load database from file
+;; save - save database to file
+
 (load "./db.lsp")
 
 (defun prompt (&optional (str ""))
@@ -8,11 +17,16 @@
 (defun exec-cmd (cmd &optional (db (db-init)))
   (cond
     ((member cmd '(exit q))
-      (format t "see ya soon")
+      (format t "see you soon...")
     )
     ((eq cmd 'save)
-      (db-save "db" db)
+      (db-save "db.txt" db)
       (exec-cmd (prompt) db)
+    )
+    ((eq cmd 'load)
+      (let ((t-db (db-load "db.txt")))
+        (exec-cmd (prompt) t-db)
+      )
     )
     ((eq cmd 'set)
       (let
@@ -21,8 +35,15 @@
       )
     )
     ((eq cmd 'get)
+      (let ()
+        (print (db-get db (prompt "key")))
+        (terpri)
+        (exec-cmd (prompt) db)
+      )
+    )
+    ((eq cmd 'del)
       (let
-        ((t-db (db-get (prompt "key"))))
+        ((t-db (db-del db (prompt "key"))))
         (exec-cmd (prompt) t-db)
       )
     )
@@ -40,8 +61,3 @@
 )
 
 (exec-cmd (prompt))
-;; (loop
-;;   (terpri)
-;;   (setq do-exit (exec-cmd (prompt)))
-;;   (when do-exit (return 0))
-;; )

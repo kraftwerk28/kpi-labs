@@ -31,11 +31,11 @@ FROM product p;
 -- використання аналітичних функцій.
 
 WITH ranked_price AS (
-    SELECT product_type_name,
-           product_name,
+    SELECT product_type_name "Group",
+           product_name      "Name",
            rank() OVER (
                PARTITION BY product_type_name ORDER BY price
-               ) rp
+               )             rp
     FROM product pr
              JOIN product_type pt ON pr.id_product_type = pt.id_product_type
 )
@@ -66,18 +66,17 @@ WHERE rp <= 3;
 -- певний місяць 2013 року.
 
 WITH invoice_2012_2013 AS (
-    WITH inv_2012_2013 AS (
-        SELECT inv.id_invoice,
-               date_part('year', purchase_time)  purchase_year,
-               date_part('month', purchase_time) purchase_month,
-               id_product,
-               quantity
-        FROM invoice inv
-                 JOIN invoice_detail inv_d
-                      ON inv.id_invoice = inv_d.id_invoice
-    )
     SELECT *
-    FROM inv_2012_2013
+    FROM (
+             SELECT inv.id_invoice,
+                    date_part('year', purchase_time)  purchase_year,
+                    date_part('month', purchase_time) purchase_month,
+                    id_product,
+                    quantity
+             FROM invoice inv
+                      JOIN invoice_detail inv_d
+                           ON inv.id_invoice = inv_d.id_invoice
+         ) i
     WHERE purchase_year IN (2012, 2013)
 ),
      invoice_2012 AS (
@@ -113,11 +112,11 @@ SELECT *,
        sum(income_2012) OVER (
            PARTITION BY product_name
            ORDER BY purchase_month
-           ) AS income_2012,
+           ) income_2012,
        sum(income_2013) OVER (
            PARTITION BY product_name
            ORDER BY purchase_month
-           ) AS income_2013
+           ) income_2013
 FROM all_income;
 
 -- 4. Показати, які товари по кожній групі мають найбільші та найменші продажі.
@@ -132,7 +131,7 @@ WITH pr AS (
                   ON p.id_product = id.id_product
     GROUP BY p.id_product
 ),
-     extremum_product_in_group AS (
+     max_product AS (
          SELECT product_type_name,
                 product_name,
                 income,
@@ -140,9 +139,9 @@ WITH pr AS (
                     PARTITION BY pt.id_product_type
                     ORDER BY income
                     ) AS min_sales,
-                first_value(income) OVER (
+                last_value(income) OVER (
                     PARTITION BY pt.id_product_type
-                    ORDER BY income DESC
+                    ORDER BY income
                     ) AS max_sales
          FROM pr
                   JOIN product_type pt
@@ -151,7 +150,7 @@ WITH pr AS (
 SELECT product_type_name,
        product_name,
        income
-FROM extremum_product_in_group
+FROM max_product
 WHERE income = max_sales
    OR income = min_sales;
 
@@ -170,7 +169,7 @@ FROM product;
 
 -- 6. По кожному товару вивести першу(f3) та останню(f4) дату продажів по
 -- кожному місяцю, cуму продажів (f5), відсоток від річної суми(f6).
-WITH extended_invoice AS (
+WITH ext_invoice AS (
     SELECT *,
            date_part('year', purchase_time)  AS year_of_purchase,
            date_part('month', purchase_time) AS month_of_purchase
@@ -182,7 +181,7 @@ WITH extended_invoice AS (
              FROM product p
                       JOIN invoice_detail id
                            ON p.id_product = id.id_product
-                      JOIN extended_invoice ei ON id.id_invoice = ei.id_invoice
+                      JOIN ext_invoice ei ON id.id_invoice = ei.id_invoice
              GROUP BY p.id_product, year_of_purchase)
 SELECT product_name,
        ei.year_of_purchase,
@@ -200,7 +199,7 @@ SELECT product_name,
 FROM product p
          JOIN invoice_detail id
               ON p.id_product = id.id_product
-         JOIN extended_invoice ei
+         JOIN ext_invoice ei
               ON id.id_invoice = ei.id_invoice
          JOIN prd yp ON p.id_product = yp.id_product AND ei.year_of_purchase = yp.year_of_purchase
 GROUP BY product_name,
