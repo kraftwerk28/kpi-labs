@@ -29,7 +29,7 @@
   (tuple-set db key val)
 )
 
-(defun db-get (db key) 
+(defun db-get (db key)
   (tuple-get db key)
 )
 
@@ -104,5 +104,14 @@
 (defun db-load (path)
   (with-open-file (in path)
     (with-standard-io-syntax (read in))
+  )
+)
+
+(defun db-sort (db)
+  (sort
+    db
+    (lambda (kv1 kv2)
+      (string< (car kv1) (car kv2))
+    )
   )
 )

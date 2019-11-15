@@ -52,6 +52,9 @@
       (terpri)
       (exec-cmd (prompt) db)
     )
+    ((eq cmd 'sort)
+      (exec-cmd (prompt) (db-sort db))
+    )
     (t
       (format t "there is nothing to do")
       (terpri)

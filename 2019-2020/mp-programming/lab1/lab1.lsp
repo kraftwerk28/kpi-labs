@@ -6,12 +6,15 @@
 ;; task1
 ;; concat 3 heads into one list
 (print
-  ((lambda (a b c)
-    (list
-      (car a)
-      (car b)
-      (car c)))
-  '(Y U I) '(G1 G2 G3) '(KK LL MM JJJ)))
+  (
+    (lambda
+      (a b c)
+      (list (car a) (car b) (car c))
+    )
+    '(Y U I) '(G1 G2 G3) '(KK LL MM JJJ)
+  )
+)
+
 ;; output: (Y G1 KK)
 
 ;; --------------------------------------------------
@@ -21,7 +24,9 @@
   (list
     (nth 2 a)
     (nth 1 b)
-    (nth 1 c)))
+    (nth 1 c)
+  )
+)
 
 (print (task2 '(Y U I) '(G1 G2 G3) '(KK LL MM JJJ)))
 ;; output: (I G2 LL)
@@ -30,8 +35,14 @@
 ;; task3
 (defun task3 (a b)
   (cond
-    ((integerp (car a)) b)
-    (t (cons (car a) (cdr b)))))
+    ((integerp (car a))
+      b
+    )
+    (t
+      (cons (car a) (cdr b))
+    )
+  )
+)
 
 (print (task3 '(1.0 2 3) '(4 5 6)))
 ;; output: (1.0 5 6)
