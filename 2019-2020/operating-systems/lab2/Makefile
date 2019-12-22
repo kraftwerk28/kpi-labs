@@ -1,9 +1,9 @@
-GCC_FLAGS := -Wno-unused-function -fpic -I include/
+GCC_FLAGS := -fpic -I include/ -lm
 SRCS := src/*.c
 BIN := bin/allocator
 
 all:
-	@gcc -o $(BIN) $(GCC_FLAGS) $(SRCS)
+	@gcc -O3 -o $(BIN) $(GCC_FLAGS) $(SRCS)
 	@echo -e "\e[1;32mCompiled successfully!\e[0m"
 
 debug:
