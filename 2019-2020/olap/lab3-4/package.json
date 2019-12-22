@@ -1,0 +1,17 @@
+{
+  "name": "lab3-4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "kraftwerk28 <kefirchik3@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^2.3.2",
+    "knex": "^0.20.3",
+    "pg": "^7.14.0"
+  }
+}

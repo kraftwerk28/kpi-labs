@@ -20,11 +20,11 @@ father(X, Y) :- male(X), roditel(X, Y).
 mother(X, Y) :- not(male(X)), roditel(X, Y).
 
 son(X, Y) :- male(X), roditel(Y, X).
-daughter(X, Y) :- not(male(X)), roditel(Y, X).
+daughter(X, Y) :- \+ male(X), roditel(Y, X).
 
 brother(X, Y) :- male(X), roditel(P, X), roditel(P, Y).
 
-sister(X, Y) :- not(male(X)), roditel(P, X), roditel(P, Y).
+sister(X, Y) :- \+ male(X), roditel(P, X), roditel(P, Y).
 uncle(X, Y) :- male(X), roditel(P, Y), brother(X, P).
 aunt(X, Y) :- not(male(X)), roditel(P, Y), brother(X, P).
 
@@ -46,8 +46,9 @@ married(viktor, larisa).
 mother_in_law(X, Y) :- mother(X, P), married(P, Y).
 father_in_law(X, Y) :- father(X, P), married(P, Y).
 
-son(anatolii, vasyl).
-daughter(olga, oksana).
+
+% son(anatolii, vasyl).
+% daughter(olga, oksana).
 % mother_in_law('vira', 'viktor').
 
 % father_in_law('oleg', 'viktor').

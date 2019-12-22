@@ -30,12 +30,18 @@ pow(Base, E, Res):-
   pow(Base, Prev_Exponent, Prev_Res),
   Res is Base * Prev_Res.
 
+
 %------------------------------------------------------------------------------%
 
 round(1, 1):- !.
 
-round(Precision, Res):-
-  Precision > 1,
-  Prev_Precision is Precision - 1,
-  round(Prev_Precision, Prev_Res),
-  Res is 1 / Precision / Precision + Prev_Res.
+round(Prec, Res):-
+  Prec > 1,
+  Prev_Prec is Prec - 1,
+  round(Prev_Prec, Prev_Res),
+  Res is 1 / Prec / Prec + Prev_Res.
+
+% pow(0.6795, 3).
+% sum(3, 100).
+% pow(0.6795, 3).
+% sum(20).
