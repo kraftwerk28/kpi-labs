@@ -2,4 +2,6 @@
 cmake-build-debug/
 .vscode/
 node_modules/
-*.csv
+/**/lab3-4/data/
+*.bak
+*.backup
