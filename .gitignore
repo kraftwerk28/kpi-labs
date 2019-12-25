@@ -5,3 +5,4 @@ node_modules/
 /**/lab3-4/data/
 *.bak
 *.backup
+report.*
