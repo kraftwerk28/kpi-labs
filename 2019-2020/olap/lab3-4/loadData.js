@@ -135,20 +135,50 @@ async function loadNames({ names }) {
 
 async function loadJobs() {}
 
-async function loadFacts({ mov_nam, movies, names }) {
-  const jobs = await kn('jobs').select('*');
-  const jobMap = jobs.reduce((acc, c) => {
-    acc[c.job_name] = c.job_id;
-    return acc;
-  }, {});
-  console.log(jobMap);
-  console.log('m to m length:', mov_nam.length);
-  const mapped = mov_nam.map(mn => ({
-    movie_id: mn.imdb_title_id,
-    person_id: mn.imdb_name_id,
-    job_id: jobMap[mn.category] || null
-  }));
-  await kn.batchInsert('facts', mapped);
+async function loadFacts() {
+  await kn('jobs').truncate();
+  const jobsMap = new Map();
+  let count = 0;
+
+  const trx = await kn.transaction();
+  const rollbackCb = err => {
+    console.error(err);
+    // trx.rollback();
+    process.exit(1);
+  };
+
+  await reduceRows('IMDb title_principals.csv', async row => {
+    const job = row.category;
+    if (!job) return Promise.resolve();
+    if (!jobsMap.has(job)) {
+      jobsMap.set(job, null);
+      const [ins] = await trx('jobs')
+        .insert({ job_name: job }, '*')
+        .catch(rollbackCb);
+      jobsMap.set(ins.job_name, ins.job_id);
+    }
+    if (row.imdb_name_id && row.imdb_name_id.length) {
+      await trx('facts')
+        .update({ job_id: jobsMap.get(job) })
+        .where('person_id', row.imdb_name_id)
+        .then(count => console.log(`Updated ${count} facts`))
+        .catch(rollbackCb);
+    }
+  });
+  await trx.commit();
+  // const jobs = await kn('jobs').select('*');
+  // const jobMap = jobs.reduce((acc, c) => {
+  //   acc[c.job_name] = c.job_id;
+  //   return acc;
+  // }, {});
+  // console.log(jobMap);
+  // console.log('m to m length:', mov_nam.length);
+  // const mapped = mov_nam.map(mn => ({
+  //   movie_id: mn.imdb_title_id,
+  //   person_id: mn.imdb_name_id,
+  //   job_id: jobMap[mn.category] || null
+  // }));
+  // await kn.batchInsert('facts', mapped);
 }
 
 async function untrash() {
@@ -361,20 +391,43 @@ async function loadTimes() {
   });
 }
 
+async function loadRatings() {
+  await kn('ratings').truncate();
+  const trx = await kn.transaction();
+  await reduceRows('IMDb ratings.csv', async row => {
+    await trx('ratings')
+      .insert({
+        movie_id: row.imdb_title_id,
+        weighted_average_vote: parseNum(row.weighted_average_vote),
+        total_votes: parseNum(row.total_votes),
+        mean_vote: parseNum(row.mean_vote),
+        median_vote: parseNum(row.median_vote),
+        top1000_voters_rating: parseNum(row.top1000_voters_rating),
+        top1000_voters_votes: parseNum(row.top1000_voters_votes)
+      })
+      .catch(trx.rollback);
+  });
+  await trx.commit();
+  await kn('ratings')
+    .whereNotIn('movie_id', kn('movies').select('movie_id'))
+    .del();
+}
+
 async function main() {
-  // console.log(await fetchRows('IMDb movies.csv', 10));
+  // console.log(await fetchRows('IMDb title_principals.csv', 6));
   // await loadMovies({ movies })
   // await loadNames({ names })
-  // await loadFacts({ mov_nam, movies, names })
+  await loadFacts();
 
   // await untrash()
   // await realter()
 
   // await extractCountries({ movies })
   // await linkCountries();
-  await loadTimes();
+  // await loadTimes();
   // await loadCompanies();
   // await loadLanguages();
+  // await loadRatings();
 
   await kn.destroy();
 }
