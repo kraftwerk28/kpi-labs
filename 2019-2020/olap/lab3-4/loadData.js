@@ -157,13 +157,13 @@ async function loadFacts() {
         .catch(rollbackCb);
       jobsMap.set(ins.job_name, ins.job_id);
     }
-    if (row.imdb_name_id && row.imdb_name_id.length) {
-      await trx('facts')
-        .update({ job_id: jobsMap.get(job) })
-        .where('person_id', row.imdb_name_id)
-        .then(count => console.log(`Updated ${count} facts`))
-        .catch(rollbackCb);
-    }
+    // if (row.imdb_name_id && row.imdb_name_id.length) {
+    //   await trx('facts')
+    //     .update({ job_id: jobsMap.get(job) })
+    //     .where('person_id', row.imdb_name_id)
+    //     .then(count => console.log(`Updated ${count} facts`))
+    //     .catch(rollbackCb);
+    // }
   });
   await trx.commit();
   // const jobs = await kn('jobs').select('*');
