@@ -245,17 +245,17 @@ async function loadCompanies() {
   await reduceRows('IMDb movies.csv', async (row, done) => {
     const company = row.production_company;
     if (companiesIds.has(company)) return Promise.resolve();
-    const [insertion] = await trx('companies').insert(
-      { company_name: company },
-      '*'
-    );
+    const [insertion] = await trx('companies')
+      .insert({ company_name: company }, '*')
+      .catch(trx.rollback);
     companiesIds.set(insertion.company_name, insertion.company_id);
 
     await trx('movies')
       .where({ movie_id: row.imdb_title_id })
       .update({
         company_id: companiesIds.get(company)
-      });
+      })
+      .catch(trx.rollback);
   });
   await trx.commit();
 
@@ -268,25 +268,40 @@ async function loadCompanies() {
 }
 
 async function loadLanguages() {
+  log('loading languages');
+  await kn.schema
+    .alterTable('movies', t => {
+      t.dropForeign(['lang_id']);
+    })
+    .catch(() => {});
   await kn('languages').truncate();
 
   const trx = await kn.transaction();
   const langIds = new Map();
   await reduceRows('IMDb movies.csv', async (row, done) => {
-    const lang = row.language;
-    if (!lang || lang.length === 0) return Promise.resolve();
-    if (langIds.has(lang)) return Promise.resolve();
-    const [insertion] = await trx('languages').insert(
-      { lang_name: lang },
-      '*'
+    const languages = row.language
+      .split(',')
+      .map(l => l.trim())
+      .filter(l => l.length > 0);
+    if (languages.length === 0) return Promise.resolve();
+    await Promise.all(
+      languages.map(async lang => {
+        if (!langIds.has(lang)) {
+          langIds.set(lang, null);
+          const [insertion] = await trx('languages')
+            .insert({ lang_name: lang }, '*')
+            .catch(trx.rollback);
+          langIds.set(lang, insertion.lang_id);
+        }
+        // updating movies
+        await trx('movies')
+          .where({ movie_id: row.imdb_title_id })
+          .update({
+            lang_id: langIds.get(lang)
+          })
+          .catch(trx.rollback);
+      })
     );
-    langIds.set(insertion.lang_name, insertion.lang_id);
-
-    await trx('movies')
-      .where({ movie_id: row.imdb_title_id })
-      .update({
-        lang_id: langIds.get(lang)
-      });
   });
   await trx.commit();
 
@@ -298,8 +313,6 @@ async function loadLanguages() {
   });
 }
 
-
-
 function str2time(str) {
   if (!str || !str.length || str.length < 4) return null;
   if (str.length === 4) {
@@ -309,12 +322,17 @@ function str2time(str) {
 }
 
 async function loadTimes() {
+  await kn.schema
+    .alterTable('times', t => {
+      t.dropForeign(['movie_id', 'name_id']);
+    })
+    .catch(() => {});
   await kn('times').truncate();
   const trx = await kn.transaction();
   await reduceRows('IMDb movies.csv', async row => {
     return trx('times')
       .insert({
-        movie_id: row.movie_id,
+        movie_id: row.imdb_title_id,
         time: str2time(row.date_published)
       })
       .catch(trx.rollback);
@@ -323,7 +341,7 @@ async function loadTimes() {
   await reduceRows('IMDb names.csv', async row => {
     return trx('times')
       .insert({
-        name_id: row.person_id,
+        name_id: row.imdb_name_id,
         time: str2time(row.date_of_bitrh)
       })
       .catch(trx.rollback);
@@ -354,9 +372,9 @@ async function main() {
 
   // await extractCountries({ movies })
   // await linkCountries();
-  // await loadTimes();
+  await loadTimes();
   // await loadCompanies();
-  await loadLanguages();
+  // await loadLanguages();
 
   await kn.destroy();
 }
