@@ -1,0 +1,15 @@
+{
+  "cloudant": [
+    {
+      "name": "lab3-node-red-app-cloudant-1587734335741",
+      "credentials": {
+        "apikey": "VyNynIFZKkyeCw1fHARbQvLfXX3zMHEPppeDmMA1c98X",
+        "host": "31bd27ff-7413-4fac-ac40-3442991fd229-bluemix.cloudantnosqldb.appdomain.cloud",
+        "password": "a7397b2af6f77ea49ee771adb0ef98e87da35f8b2d81a46dfb62fea78d5a278f",
+        "port": 443,
+        "url": "https://31bd27ff-7413-4fac-ac40-3442991fd229-bluemix:a7397b2af6f77ea49ee771adb0ef98e87da35f8b2d81a46dfb62fea78d5a278f@31bd27ff-7413-4fac-ac40-3442991fd229-bluemix.cloudantnosqldb.appdomain.cloud",
+        "username": "31bd27ff-7413-4fac-ac40-3442991fd229-bluemix"
+      }
+    }
+  ]
+}

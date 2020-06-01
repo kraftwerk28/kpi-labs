@@ -209,10 +209,11 @@ async function realter() {
   });
 }
 
-async function extractCountries() {
-  await kn('countries').truncate();
+async function loadCountries() {
+  await kn('movies_countries').del();
+  await kn('countries').del();
   const trx = await kn.transaction();
-  const countriesSet = new Set();
+  const countryMap = new Map();
   await reduceRows('IMDb movies.csv', async (row, done) => {
     const countries = (row.country || '')
       .split(',')
@@ -220,13 +221,21 @@ async function extractCountries() {
       .filter(c => c.length > 0);
 
     await Promise.all(
-      countries.map(country => {
-        if (countriesSet.has(country)) return Promise.resolve();
-        countriesSet.add(country);
-        return trx('countries')
-          .insert({ country_name: country })
-          .whereNotExists(kn('countries').select('country_name'));
+      countries.map(async country => {
+        if (countryMap.has(country)) return Promise.resolve();
+        countryMap.set(country, null);
+        const [ins] = await trx('countries').insert(
+          { country_name: country },
+          '*'
+        );
+        countryMap.set(country, ins.country_id);
       })
+    );
+    await trx('movies_countries').insert(
+      countries.map(c => ({
+        movie_id: row.imdb_title_id,
+        country_id: countryMap.get(c)
+      }))
     );
   });
   await trx.commit();
@@ -417,17 +426,24 @@ async function main() {
   // console.log(await fetchRows('IMDb title_principals.csv', 6));
   // await loadMovies({ movies })
   // await loadNames({ names })
-  await loadFacts();
+  // await loadFacts();
 
   // await untrash()
   // await realter()
 
-  // await extractCountries({ movies })
+  // await loadCountries()
   // await linkCountries();
   // await loadTimes();
   // await loadCompanies();
   // await loadLanguages();
   // await loadRatings();
+  const trx = await kn.transaction();
+  await reduceRows('IMDb names.csv', async row => {
+    const date_of_birth_t = str2time(row.birth_date);
+    return trx('persons')
+      .update({ date_of_birth_t });
+  });
+  await trx.commit()
 
   await kn.destroy();
 }

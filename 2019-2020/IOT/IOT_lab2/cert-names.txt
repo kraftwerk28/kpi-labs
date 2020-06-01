@@ -1,0 +1,3 @@
+A certificate for this thing 	6c4db5e654.cert.pem
+A public key 	6c4db5e654.public.key
+A private key 	6c4db5e654.private.key

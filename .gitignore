@@ -6,3 +6,7 @@ node_modules/
 *.bak
 *.backup
 report.*
+
+rickshaw4iot-0.2.2/
+scc-ckc-api-examples/
+mqtt-watson-iot-platform-sample/
