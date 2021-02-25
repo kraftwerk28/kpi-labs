@@ -29,13 +29,13 @@ class Action:
 class MoveUnits(Action):
     units: List[Unit]
 
-    def __repr__(self):
-        return "Move(" + ",".join(str(u) for u in self.units) + ")"
+    def __str__(self):
+        return "Move(" + " ".join(str(u) for u in self.units) + ")"
 
 
 @dataclass
 class Nop(Action):
-    def __repr__(self):
+    def __str__(self):
         return "Nop"
 
 
@@ -67,27 +67,24 @@ class State:
 
     def is_failed(self) -> bool:
         """If state isn't satisfying the requirements"""
-        if (len([u for u in self.lbank if u is Unit.Cannibal]) !=
-                len([u for u in self.lbank if u is Unit.Missionary])):
-            return True
-        return False
+        return (len([u for u in self.lbank if u is Unit.Cannibal]) !=
+                len([u for u in self.lbank if u is Unit.Missionary]))
 
     def possible_actions(self) -> List[Action]:
         """Get possible next actions from current state"""
-        result = []
+        actions = [Nop()]
         bank = self.lbank if self.boat_side is BoatSide.Left else self.rbank
         if len([u for u in bank if u is Unit.Cannibal]) >= 2:
-            result.append(MoveUnits([Unit.Cannibal]*2))
+            actions.append(MoveUnits([Unit.Cannibal]*2))
         if len([u for u in bank if u is Unit.Missionary]) >= 2:
-            result.append(MoveUnits([Unit.Missionary]*2))
+            actions.append(MoveUnits([Unit.Missionary]*2))
         if Unit.Cannibal in bank and Unit.Missionary in bank:
-            result.append(MoveUnits([Unit.Cannibal, Unit.Missionary]))
+            actions.append(MoveUnits([Unit.Cannibal, Unit.Missionary]))
         if Unit.Cannibal in bank:
-            result.append(MoveUnits([Unit.Cannibal]))
+            actions.append(MoveUnits([Unit.Cannibal]))
         if Unit.Missionary in bank:
-            result.append(MoveUnits([Unit.Missionary]))
-        result.append(Nop())
-        return result
+            actions.append(MoveUnits([Unit.Missionary]))
+        return actions
 
     def dfs(self):
         """Depth first search"""
@@ -95,26 +92,32 @@ class State:
         visited = set([self])
         # Used to build full path after algorithm finishes
         backtrack = {self: None}
+
         while stack:
-            st = stack.pop()
-            if st.is_goal():
-                print("SOLUTION:")
-                path, curr = [], (st, Nop())
-                while curr is not None:
-                    path.insert(0, curr)
-                    curr = backtrack[curr[0]]
-                for i, (s, a) in enumerate(path):
-                    print(f"{i+1}. State: {s}")
-                    print(f"   Action: {a}")
-                return
-            for action in st.possible_actions():
-                next_state = st.with_action(action)
+            state = stack.pop()
+            if state.is_goal():
+                return self.unwind(state, backtrack)
+            for action in state.possible_actions():
+                next_state = state.with_action(action)
                 if next_state not in visited and not next_state.is_failed():
                     visited.add(next_state)
                     stack.append(next_state)
-                    backtrack[next_state] = (st, action)
+                    backtrack[next_state] = (state, action)
+        print("Counl't find the solution")
 
-    def __repr__(self):
+    def unwind(self, final_state, backtrack):
+        """Read backtrack and print path to solution"""
+        print("Solution:")
+        path, curr = [], (final_state, Nop())
+        while curr is not None:
+            path.insert(0, curr)
+            curr = backtrack[curr[0]]
+        for i, (s, a) in enumerate(path):
+            print(f"{i+1}. State: {s}")
+            print(f"   Action: {a}")
+
+    def __str__(self):
+        """Readable representation of State"""
         res = "[" + "".join(str(u) for u in self.lbank).rjust(6) + "]"
         if self.boat_side is BoatSide.Left:
             res += " ~B~~~~~~~~ "
