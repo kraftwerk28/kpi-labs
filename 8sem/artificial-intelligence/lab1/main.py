@@ -27,16 +27,17 @@ class Action:
 
 @dataclass
 class MoveUnits(Action):
+    """Move units out of the boat and take to boat"""
     units: List[Unit]
 
     def __str__(self):
-        return "Move(" + " ".join(str(u) for u in self.units) + ")"
+        u = " ".join(str(u) for u in self.units)
+        return f"Move({u})"
 
 
 @dataclass
 class Nop(Action):
-    def __str__(self):
-        return "Nop"
+    pass
 
 
 class State:
@@ -53,7 +54,7 @@ class State:
         l, r = self.lbank[:], self.rbank[:]
         if isinstance(action, MoveUnits):
             for u in action.units:
-                if self.boat_side == BoatSide.Left:
+                if self.boat_side is BoatSide.Left:
                     l.remove(u)
                     r.append(u)
                 else:
@@ -67,12 +68,25 @@ class State:
 
     def is_failed(self) -> bool:
         """If state isn't satisfying the requirements"""
-        return (len([u for u in self.lbank if u is Unit.Cannibal]) !=
-                len([u for u in self.lbank if u is Unit.Missionary]))
+        if self.boat_side is BoatSide.Left:
+            boatside, otherside = self.lbank, self.rbank
+        else:
+            boatside, otherside = self.rbank, self.lbank
+        c = len([u for u in boatside if u is Unit.Cannibal])
+        m = len([u for u in boatside if u is Unit.Missionary])
+        if abs(c - m) > 1 and c > 0 and m > 0:
+            if c == 1 or m == 1:
+                return False
+            return True
+        c = len([u for u in otherside if u is Unit.Cannibal])
+        m = len([u for u in otherside if u is Unit.Missionary])
+        if c > 0 and m > 0 and c != m:
+            return True
+        return False
 
     def possible_actions(self) -> List[Action]:
         """Get possible next actions from current state"""
-        actions = [Nop()]
+        actions = []
         bank = self.lbank if self.boat_side is BoatSide.Left else self.rbank
         if len([u for u in bank if u is Unit.Cannibal]) >= 2:
             actions.append(MoveUnits([Unit.Cannibal]*2))
@@ -92,7 +106,6 @@ class State:
         visited = set([self])
         # Used to build full path after algorithm finishes
         backtrack = {self: None}
-
         while stack:
             state = stack.pop()
             if state.is_goal():
@@ -103,26 +116,30 @@ class State:
                     visited.add(next_state)
                     stack.append(next_state)
                     backtrack[next_state] = (state, action)
-        print("Counl't find the solution")
+        print("Could't find the solution")
 
     def unwind(self, final_state, backtrack):
         """Read backtrack and print path to solution"""
         print("Solution:")
-        path, curr = [], (final_state, Nop())
+        path = []
+        curr = backtrack[final_state]
         while curr is not None:
             path.insert(0, curr)
             curr = backtrack[curr[0]]
         for i, (s, a) in enumerate(path):
-            print(f"{i+1}. State: {s}")
-            print(f"   Action: {a}")
+            ord = (str(i + 1)+".").ljust(2)
+            dir = "->" if s.boat_side is BoatSide.Left else "<-"
+            print(f"{ord} State: {s}")
+            print(f"   Action: {a} {dir}")
+        print(f"{i+2}. State: {final_state}")
 
     def __str__(self):
         """Readable representation of State"""
         res = "[" + "".join(str(u) for u in self.lbank).rjust(6) + "]"
         if self.boat_side is BoatSide.Left:
-            res += " ~B~~~~~~~~ "
+            res += " ~B~~~~~~ "
         else:
-            res += " ~~~~~~~~B~ "
+            res += " ~~~~~~B~ "
         return res + "[" + "".join(str(u) for u in self.rbank).rjust(6) + "]"
 
     def __eq__(self, o):
@@ -133,6 +150,13 @@ class State:
     def __hash__(self):
         """Hash method to use `State` in `visited` set"""
         return hash((tuple(self.lbank), tuple(self.rbank), self.boat_side))
+
+    @staticmethod
+    def mk(s: str, b):
+        l, r = s.split(" ", 2)
+        left = [Unit.Cannibal if c == "C" else Unit.Missionary for c in l]
+        right = [Unit.Cannibal if c == "C" else Unit.Missionary for c in r]
+        return State(b, left, right)
 
 
 if __name__ == "__main__":
