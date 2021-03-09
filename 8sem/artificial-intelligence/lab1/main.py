@@ -12,12 +12,12 @@ class Unit(Enum):
         return "C" if self is Unit.Cannibal else "M"
 
 
-class BoatSide(Enum):
+class Side(Enum):
     Left = 1
     Right = 2
 
-    def opposite(self):
-        return BoatSide.Left if (self is BoatSide.Right) else BoatSide.Right
+    def __invert__(self):
+        return Side.Left if (self is Side.Right) else Side.Right
 
 
 @dataclass
@@ -35,14 +35,9 @@ class MoveUnits(Action):
         return f"Move({u})"
 
 
-@dataclass
-class Nop(Action):
-    pass
-
-
 class State:
     def __init__(self,
-                 boat_side=BoatSide.Left,
+                 boat_side=Side.Left,
                  lbank=[Unit.Cannibal]*3+[Unit.Missionary]*3,
                  rbank=[]):
         self.boat_side = boat_side
@@ -54,13 +49,13 @@ class State:
         l, r = self.lbank[:], self.rbank[:]
         if isinstance(action, MoveUnits):
             for u in action.units:
-                if self.boat_side is BoatSide.Left:
+                if self.boat_side is Side.Left:
                     l.remove(u)
                     r.append(u)
                 else:
                     r.remove(u)
                     l.append(u)
-        return State(self.boat_side.opposite(), l, r)
+        return State(~self.boat_side, l, r)
 
     def is_goal(self) -> bool:
         """If state is desired (left bank should be empty)"""
@@ -68,7 +63,7 @@ class State:
 
     def is_failed(self) -> bool:
         """If state isn't satisfying the requirements"""
-        if self.boat_side is BoatSide.Left:
+        if self.boat_side is Side.Left:
             boatside, otherside = self.lbank, self.rbank
         else:
             boatside, otherside = self.rbank, self.lbank
@@ -87,7 +82,7 @@ class State:
     def possible_actions(self) -> List[Action]:
         """Get possible next actions from current state"""
         actions = []
-        bank = self.lbank if self.boat_side is BoatSide.Left else self.rbank
+        bank = self.lbank if self.boat_side is Side.Left else self.rbank
         if len([u for u in bank if u is Unit.Cannibal]) >= 2:
             actions.append(MoveUnits([Unit.Cannibal]*2))
         if len([u for u in bank if u is Unit.Missionary]) >= 2:
@@ -127,19 +122,19 @@ class State:
             path.insert(0, curr)
             curr = backtrack[curr[0]]
         for i, (s, a) in enumerate(path):
-            ord = (str(i + 1)+".").ljust(2)
-            dir = "->" if s.boat_side is BoatSide.Left else "<-"
-            print(f"{ord} State: {s}")
-            print(f"   Action: {a} {dir}")
+            nstep = (str(i + 1)+".").ljust(3)
+            dir = "->" if s.boat_side is Side.Left else "<-"
+            print(f"{nstep} State: {s}")
+            print(f"    Action: {a} {dir}\n")
         print(f"{i+2}. State: {final_state}")
 
     def __str__(self):
         """Readable representation of State"""
         res = "[" + "".join(str(u) for u in self.lbank).rjust(6) + "]"
-        if self.boat_side is BoatSide.Left:
-            res += " ~B~~~~~~ "
+        if self.boat_side is Side.Left:
+            res += " \__/~~~~~~ "
         else:
-            res += " ~~~~~~B~ "
+            res += " ~~~~~~\__/ "
         return res + "[" + "".join(str(u) for u in self.rbank).rjust(6) + "]"
 
     def __eq__(self, o):
