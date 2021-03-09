@@ -89,10 +89,17 @@ class State:
         return not self.lbank
 
     def is_failed(self):
-        h = len([u for u in self.lbank if u is Unit.Human])
-        m = len([u for u in self.lbank
-                 if u in (Unit.SmallMonkey, Unit.BigMonkey)])
-        return abs(h - m) > 1
+        bank = self.lbank if self.boat_side is Side.Right else self.rbank
+        h = bank.count(Unit.Human)
+        m = bank.count(Unit.BigMonkey) + bank.count(Unit.SmallMonkey)
+        if m > h and 0 not in (m, h):
+            return True
+        bank = self.lbank if self.boat_side is Side.Left else self.rbank
+        h = bank.count(Unit.Human)
+        m = bank.count(Unit.BigMonkey) + bank.count(Unit.SmallMonkey)
+        if m > h and 0 not in (m, h):
+            return True
+        return False
 
     def possible_actions(self) -> List[MoveUnits]:
         """Get all possible children of current node"""
@@ -105,7 +112,10 @@ class State:
 
     def heuristics(self):
         """h(x)"""
-        return len(self.lbank)
+        # This one is best
+        return len(self.lbank) - len(self.rbank)
+        # return len([u for u in self.lbank if u is Unit.Human])
+        # return len(self.lbank)
 
     def a_star(self):
         # Already visited nodes
@@ -120,6 +130,7 @@ class State:
             closed.add(current)
             if current.is_goal():
                 print("Found goal!")
+                print(f"Visited nodes: {len(closed)}")
                 current.unwind(backtrack)
                 return
             for action in current.possible_actions():
