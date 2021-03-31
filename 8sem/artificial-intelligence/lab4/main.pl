@@ -16,8 +16,8 @@ either_empty(A, B) :-
   (A  = empty, B \= empty);
   (A \= empty, B  = empty).
 
+% -List, +A, +B
 find_swap_indexes(List, A, B) :- find_swap_indexes_aux(List, 0, A, B).
-
 find_swap_indexes_aux([X, Y    |  _], C, C, B) :-
   either_empty(X, Y),
   B is C + 1.
@@ -28,6 +28,7 @@ find_swap_indexes_aux([_       | Xs], C, A, B) :-
   C2 is C + 1,
   find_swap_indexes_aux(Xs, C2, A, B).
 
+% +List, +From, +To, -Result
 swap([A,    B | Xs], 0,  1,  [B,    A | Xs]).
 swap([A, X, B | Xs], 0,  2,  [B, X, A | Xs]).
 swap([X       | Xs], I1, I2, [X       | Ys]) :-
@@ -35,20 +36,13 @@ swap([X       | Xs], I1, I2, [X       | Ys]) :-
   I22 is I2 - 1,
   swap(Xs, I11, I22, Ys).
 
-search_empty([E |  _], I, I) :-
-  E = empty.
-search_empty([E | Es], I, N) :-
-  E \= empty,
-  I1 is I + 1,
-  search_empty(Es, I1, N).
-
 format_solution([X], R) :-
   format(atom(R), 'from ~w to ~w', X).
 format_solution([[A, B] | Xs], Repr) :-
   format_solution(Xs, Rest),
   format(atom(Repr), 'from ~w to ~w\n~w', [A, B, Rest]).
 
-main() :-
+main(Solution) :-
   initial(State),
   dls(State, [], Solution, 6969),
   format_solution(Solution, Repr),
